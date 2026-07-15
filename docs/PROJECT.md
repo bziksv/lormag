@@ -67,10 +67,14 @@ Soft-режим: php-fpm `ondemand`, max 2 workers, 256M RAM, opcache 64M.
 
 ## Деплой на prod
 
-**Git после правок — всегда.** **Prod — только по явной просьбе.**
+**Два отдельных шага — не путать:**
 
-1. Обычно: `git commit` + `git push origin main` (на сервер **не** трогаем).
-2. Когда попросили выкатить: `./scripts/deploy-prod.sh` (pull с GitHub на prod).
+| Шаг | Когда | Команда |
+|-----|-------|---------|
+| 1. Git | После **любых** правок кода | `git commit` + `git push origin main` |
+| 2. Prod | **Только** когда пользователь явно попросил | `./scripts/deploy-prod.sh` |
+
+Push в GitHub **не выкатывает** сайт на prod автоматически.
 
 ```bash
 cd lormag.ru

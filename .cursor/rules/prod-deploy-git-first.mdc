@@ -5,20 +5,25 @@ alwaysApply: true
 
 # Git и prod — раздельно
 
-**После правок агент делает:** commit + push в `origin/main`.
+## После любых правок кода
 
-**На prod — только по явной просьбе пользователя.** До этого не запускать `deploy-prod.sh`.
+1. `git commit` + `git push origin main` — **да, всегда**.
+2. `./scripts/deploy-prod.sh` / SSH на prod — **нет**, пока пользователь явно не попросил.
 
-**Путь на prod (когда попросили):** push в git → `cd lormag.ru && ./scripts/deploy-prod.sh`.
+Push в GitHub **не равен** выкатке на prod. Сервер обновляется только отдельным шагом.
+
+## Когда пользователь просит выкатить
+
+`cd lormag.ru && ./scripts/deploy-prod.sh` — только через git (`fetch` + `merge --ff-only` на prod).
 
 ## Запрещено
 
-- Деплоить на prod без явной просьбы.
-- `scp` и правки на prod без commit в git.
+- Запускать `deploy-prod.sh` сразу после push без просьбы пользователя.
+- `scp`, правки файлов на prod, SSH-деплой в обход git.
 
 ## Агент
 
-- После правок: **только push в git**.
-- Prod: deploy + verify — **только если пользователь попросил выкатить**.
+- Закончил правки → **commit + push**, на этом остановиться.
+- Prod → **только по фразе вроде «выкатывай на прод»**.
 
 Полные инструкции: `lormag.ru/docs/PROJECT.md`.

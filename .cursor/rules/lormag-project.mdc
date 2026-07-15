@@ -24,6 +24,11 @@ Bitrix-магазин LOR-оборудования, шаблон enext.
 - Шаблон: `bitrix/templates/enext`
 - Модули: altop.enext, isaev.seotemplate, asd.*
 
+## Деплой
+
+- После правок: **только git push** (GitHub).
+- На prod: **только когда пользователь явно попросил** → `./scripts/deploy-prod.sh`.
+
 ## Workspace
 
 Родитель `lormag/` — дампы SQL и `.cursorignore`, не git. Код, scripts и docs — в `lormag.ru/`.
