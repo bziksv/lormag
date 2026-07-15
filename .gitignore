@@ -1,40 +1,69 @@
-# === Cursor (локально, не в репозиторий) ===
-.cursorignore
-.cursor/
+# =============================================================================
+# lormag.ru — Bitrix .gitignore
+# bitrix/modules/ — в git
+# =============================================================================
 
-# === Секреты и конфиги окружения (НЕ коммитить) ===
-bitrix/.settings.php
+# --- Секреты и конфиги (обязательно) ---
 bitrix/license_key.php
+bitrix/.settings.php
+bitrix/.settings_extra.php
 bitrix/php_interface/dbconn.php
 bitrix/php_interface/dbconn.local.php
-.local/
-.local/**
+.htaccess
+.env
+.env.*
 
-# === Медиа и кеш ===
+# --- Кэш и временные каталоги Bitrix ---
+bitrix/cache/
+bitrix/managed_cache/
+bitrix/stack_cache/
+bitrix/html_pages/
+bitrix/tmp/
+bitrix/backup/
+bitrix/catalog_export/
+bitrix/updates/
+upload/tmp/
+
+# --- Пользовательские файлы / медиа ---
 upload/
-upload/*
-bitrix/cache/*
-bitrix/managed_cache/*
-bitrix/stack_cache/*
-bitrix/backup/*
-bitrix/html_pages/*
-bitrix/catalog_export/*
 
-# === Дампы, архивы, бэкапы ===
-*.sql
-*.sql.gz
-*.tar
-*.tar.gz
-*.zip
-bitrix/modules/*.tar.gz
-
-# === Логи и служебное ===
+# --- Логи ---
 *.log
-.DS_Store
+logs/
+pathLog.txt
+log_*.txt
+bitrix/modules/*.dat
+bitrix/modules/updater*.log
+bitrix/modules/updater_versions.php
+log.txt
+
+# --- Sitemap и XML-выгрузки ---
+sitemap*.xml
+~2sitemap*.xml
+
+# --- Архивы модулей ---
+bitrix/modules/*.tar.gz
+bitrix/modules/*.zip
+
+# --- IDE / OS ---
 .idea/
+.vscode/
+.DS_Store
 .osp/
 
-# === Верификация поисковиков ===
+# --- Верификация поисковиков ---
 yandex_*
 google*
 mailru-*
+
+# --- Прочее ---
+*.sql
+*.sql.gz
+*.tar.gz
+*.zip
+*.rar
+
+# --- Локальная разработка (Mac) ---
+.local/run/
+.local/backup/
+.local/db.env

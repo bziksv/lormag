@@ -1,0 +1,29 @@
+---
+description: Контекст проекта lormag.ru (Bitrix)
+alwaysApply: true
+---
+
+# lormag.ru
+
+Bitrix-магазин LOR-оборудования, шаблон enext.
+
+## Инфраструктура
+
+- GitHub: https://github.com/bziksv/lormag
+- Git root: `lormag.ru/` (= prod path)
+- Prod: `217.28.220.186`, path `/var/www/lormag_ru_usr/data/www/lormag.ru`, SSH `vilmed`
+- Локально: http://127.0.0.1:8085/ (nginx :8085, php-fpm :9085)
+
+## Документация
+
+Перед изменениями читай `lormag.ru/docs/PROJECT.md`.
+
+## Стек
+
+- 1C-Bitrix, PHP 8.3 (локально soft)
+- Шаблон: `bitrix/templates/enext`
+- Модули: altop.enext, isaev.seotemplate, asd.*
+
+## Workspace
+
+Родитель `lormag/` — дампы SQL и `.cursorignore`, не git. Код, scripts и docs — в `lormag.ru/`.

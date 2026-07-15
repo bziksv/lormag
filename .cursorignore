@@ -1,0 +1,79 @@
+# --- Дампы, архивы, служебное ---
+*.sql
+*.sql.gz
+*.tar.gz
+*.zip
+*.rar
+.DS_Store
+.idea/
+**/.idea/
+
+# --- Логи ---
+*.log
+**/logs/
+**/pathLog.txt
+**/log_*.txt
+
+# --- Медиа и выгрузки (очень тяжёлые) ---
+upload/
+sitemap*.xml
+~2sitemap*.xml
+
+# --- Bitrix: кэш и временные ---
+bitrix/cache/
+bitrix/managed_cache/
+bitrix/stack_cache/
+bitrix/html_pages/
+bitrix/tmp/
+bitrix/backup/
+bitrix/catalog_export/
+bitrix/updates/
+
+# --- Bitrix: ядро UI/ассеты (не бизнес-код) ---
+bitrix/js/
+bitrix/css/
+bitrix/fonts/
+bitrix/panel/
+bitrix/themes/
+bitrix/wizards/
+bitrix/activities/
+bitrix/gadgets/
+bitrix/blocks/
+bitrix/images/
+bitrix/sounds/
+bitrix/otp/
+bitrix/services/
+bitrix/admin/
+bitrix/tools/
+bitrix/legal/
+
+# modules — оставляем (кастомные модули и шаблон enext)
+bitrix/modules/*/lang/
+bitrix/modules/*/install/
+
+bitrix/modules/*.tar.gz
+bitrix/modules/*.dat
+bitrix/modules/updater*.log
+bitrix/modules/updater_versions.php
+
+# --- Секреты / конфиг БД ---
+bitrix/.settings.php
+bitrix/.settings_extra.php
+bitrix/php_interface/dbconn.php
+bitrix/license_key.php
+
+# --- Бинарные и медиафайлы ---
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.ico
+*.pdf
+*.xlsx
+*.woff
+*.woff2
+*.ttf
+*.eot
+*.mp3
+*.mp4

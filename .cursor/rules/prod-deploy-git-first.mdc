@@ -1,0 +1,24 @@
+---
+description: Деплой lormag.ru — только через git, затем deploy-prod.sh
+alwaysApply: true
+---
+
+# Git и prod — раздельно
+
+**После правок агент делает:** commit + push в `origin/main`.
+
+**На prod — только по явной просьбе пользователя.** До этого не запускать `deploy-prod.sh`.
+
+**Путь на prod (когда попросили):** push в git → `cd lormag.ru && ./scripts/deploy-prod.sh`.
+
+## Запрещено
+
+- Деплоить на prod без явной просьбы.
+- `scp` и правки на prod без commit в git.
+
+## Агент
+
+- После правок: **только push в git**.
+- Prod: deploy + verify — **только если пользователь попросил выкатить**.
+
+Полные инструкции: `lormag.ru/docs/PROJECT.md`.
