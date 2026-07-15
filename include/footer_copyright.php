@@ -1,0 +1,5 @@
+© 2021-<?=date('Y');?> Магазин медицинского оториноларингологического (ЛОР)&nbsp;оборудования Лормаг<br>
+Режим работы: Пн. - Пт.: 9:00 - 19:00<br>
+Телефон:<span style="color: #2f3192;">&nbsp;</span><span style="color: #2f3192;"><u><span style="color: #00aeef;">+7-499-112-02-80</span></u></span><br>
+E-mail: <a href="mailto:info@lormag.ru"><span style="color: #2f3192;"><u><span style="color: #00aeef;">info@lormag.ru</span></u></span></a><br>
+<noindex><p>На нашем сайте используются файлы <a target="_blank" href="/upload/cookies-lormag.png">cookies</a> для персонализации рекламы и анализа трафика. Продолжая пользоваться сайтом, вы принимаете нашу <a target="_blank" href="/upload/politics-lormag.png">политику конфиденциальности</a> и разрешаете использование <a target="_blank" href="/upload/rules-recommendation-lormag.png">рекомендательных технологий</a>. Чтобы отказаться от использования cookies, отключите их сохранение в настройках браузера.</p></noindex>

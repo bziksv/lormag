@@ -1,0 +1,4 @@
+<?
+$MESS["GEO_LOCATION_COMPONENT_NAME"] = "Регион доставки";
+$MESS["GEO_LOCATION_COMPONENT_DESCR"] = "Выбор региона доставки";
+$MESS["GEO_LOCATION_COMPONENT_PATH_NAME"] = "ALTOP";

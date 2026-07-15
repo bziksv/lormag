@@ -1,0 +1,1 @@
+<a href="<?=SITE_DIR?>"><span>ЭЛЕКТРОСИЛА</span>&nbsp;<span>NEXT</span></a>

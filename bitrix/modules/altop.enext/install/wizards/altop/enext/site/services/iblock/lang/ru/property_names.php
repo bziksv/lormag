@@ -1,0 +1,20 @@
+<?
+$MESS["UF_SHORT_DESC"] = "Краткое описание";
+$MESS["UF_PREVIEW"] = "Анонс";
+$MESS["UF_HIDDEN"] = "Скрыть в каталоге";
+$MESS["UF_HIDDEN_MENU"] = "Скрыть в меню";
+$MESS["UF_PRODUCTS_VIEW"] = "Вид отображения товаров";
+$MESS["UF_ICON"] = "Иконка Awesome";
+$MESS["UF_SECTION_ICON"] = "Код иконочного шрифта";
+$MESS["UF_BACKGROUND_1"] = "Фоновый цвет 1";
+$MESS["UF_BACKGROUND_2"] = "Фоновый цвет 2";
+$MESS["UF_BROWSER_TITLE"] = "Заголовок окна браузера";
+$MESS["UF_KEYWORDS"] = "Ключевые слова";
+$MESS["UF_META_DESCRIPTION"] = "Мета-описание";
+$MESS["UF_SECTION_TITLE"] = "Заголовок раздела";
+$MESS["UF_BREADCRUMB_TITLE"] = "Заголовок хлебных крошек";
+$MESS["UF_BANNER"] = "Баннер";
+$MESS["UF_BANNER_URL"] = "URL баннера";
+$MESS["UF_ADVANTAGES"] = "Преимущества";
+$MESS["UF_FAQ"] = "Вопросы и ответы";
+$MESS["UF_OBJECT"] = "Объект";

@@ -1,0 +1,122 @@
+/***ITEM***/
+.slide-panel__form-item{
+	display: flex;
+	margin-bottom: 18px;
+}
+
+.slide-panel__form-item__image{
+	width: 52px;
+	height: 52px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-right: 12px;
+	border: 1px solid #e3ecef;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;	
+}
+
+.slide-panel__form-item__image > img{
+	width: auto;
+	max-width: 46px;
+	height: auto;
+	max-height: 46px;
+}
+
+.slide-panel__form-item__name{
+	align-self: center;
+	color: #263238;
+}
+
+/***RATING***/
+.form-group-rating-stars{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 18px;
+	cursor: pointer;
+}
+
+.form-group-rating-star{
+	font-size: 48px;
+	color: #ced9db;
+	-webkit-transition: all 0.15s ease 0s;
+	-moz-transition: all 0.15s ease 0s;
+	-o-transition: all 0.15s ease 0s;
+	transition: all 0.15s ease 0s;
+}
+
+.form-group-rating-star + .form-group-rating-star{
+	padding-left: 4px;
+}
+
+.form-group-rating-star-active{
+	color: #008d55;
+}
+
+.form-group-rating-val{
+	margin-top: 18px;
+	color: #78909c;
+	text-align: center;
+}
+
+/***LIST***/
+.form-group-list-items{
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -6px;
+	margin-top: 6px;
+}
+
+.form-group-list-item{
+	margin-left: 6px;
+	margin-top: 6px;
+	padding: 9px 16px 8px;
+	border: 2px solid #e3ecef;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	-webkit-transition: all 0.15s ease 0s;
+	-moz-transition: all 0.15s ease 0s;
+	-o-transition: all 0.15s ease 0s;
+	transition: all 0.15s ease 0s;	
+}
+
+.bx-no-touch .form-group-list-item:hover,
+.bx-touch .form-group-list-item:active{
+	border-color: #78909c;
+	background: #e3ecef;
+}
+
+.form-group-list-item-active,
+.bx-no-touch .form-group-list-item-active:hover,
+.bx-touch .form-group-list-item-active:active{
+	border-color: #6639b6;
+	background: rgba(102, 57, 182, 0.16);
+}
+
+/***FILES***/
+.form-group-files-content{
+	margin-top: 12px;	
+}
+
+/***RATING***/
+/***LIST***/
+/***FILES***/
+.form-group-rating-title,
+.form-group-list-title,
+.form-group-files-title{
+	color: #263238;
+}
+
+.form-group-rating .form-control-feedback,
+.form-group-list .form-control-feedback,
+.form-group-files .form-control-feedback{
+	height: auto;
+	line-height: 1;
+}

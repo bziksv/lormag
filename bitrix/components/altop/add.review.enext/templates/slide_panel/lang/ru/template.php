@@ -1,0 +1,20 @@
+<?
+$MESS["ADD_REVIEW_SLIDE_PANEL_RATING"] = "Сделайте выбор!";
+$MESS["ADD_REVIEW_SLIDE_PANEL_SELECT_FILE"] = "Выбрать фотографию";
+$MESS["ADD_REVIEW_SLIDE_PANEL_SELECT_FILES"] = "Выбрать фотографии";
+$MESS["ADD_REVIEW_SLIDE_PANEL_REMOVE_FILE"] = "Вы уверены, что хотите удалить эту фотографию?";
+$MESS["ADD_REVIEW_SLIDE_PANEL_LIMIT_FILES"] = "Количество фотографий превышает допустимое количество {{fi-limit}}";
+$MESS["ADD_REVIEW_SLIDE_PANEL_TYPE_FILES"] = "Разрешено загружать только изображения";
+$MESS["ADD_REVIEW_SLIDE_PANEL_PREVIEW_TEXT"] = "Общий комментарий";
+$MESS["ADD_REVIEW_SLIDE_PANEL_CAPTCHA_WORD"] = "Введите код";
+$MESS["ADD_REVIEW_SLIDE_PANEL_CAPTCHA_WRONG"] = "Неверный код";
+$MESS["ADD_REVIEW_SLIDE_PANEL_SUBMIT"] = "Отправить отзыв";
+$MESS["ADD_REVIEW_SLIDE_PANEL_NOT_EMPTY_INVALID"] = "Заполните поле";
+$MESS["ADD_REVIEW_SLIDE_PANEL_FILES_NOT_EMPTY_INVALID"] = "Выберите фотографии";
+$MESS["ADD_REVIEW_SLIDE_PANEL_FILE_NOT_EMPTY_INVALID"] = "Выберите фотографию";
+$MESS["ADD_REVIEW_SLIDE_PANEL_USER_CONSENT_NOT_EMPTY_INVALID"] = "Согласитесь с условиями";
+$MESS["ADD_REVIEW_SLIDE_PANEL_REGEXP_INVALID"] = "Неверный формат";
+$MESS["ADD_REVIEW_SLIDE_PANEL_ALERT_SUCCESS"] = "Ваш отзыв успешно добавлен";
+$MESS["ADD_REVIEW_SLIDE_PANEL_ALERT_ERROR"] = "Ошибка! Ваш отзыв не добавлен";
+$MESS["ADD_REVIEW_SLIDE_PANEL_ALERT_PREMODERATION"] = "Ваш отзыв успешно отправлен на модерацию";
+$MESS["ADD_REVIEW_SLIDE_PANEL_ALERT_AUTHORIZED"] = "Оставить отзыв могут только авторизованные пользователи";

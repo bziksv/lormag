@@ -1,0 +1,12 @@
+<?
+$PERM["services"]["7"]="W";
+$PERM["promotions"]["7"]="W";
+$PERM["places"]["7"]="W";
+$PERM["personal"]["7"]="W";
+$PERM["news"]["7"]="W";
+$PERM["gallery"]["7"]="W";
+$PERM["catalog"]["7"]="W";
+$PERM["brands"]["7"]="W";
+$PERM["index.php"]["7"]="W";
+$PERM["/"]["*"]="R";
+?>

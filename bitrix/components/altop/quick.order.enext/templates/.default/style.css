@@ -1,0 +1,24 @@
+.quick-order-form-title{
+	padding: 24px 0 18px;	
+	font-family: "Museo Sans Cyrl 500", sans-serif;
+	font-size: 20px;	
+	color: #263238;
+	line-height: 24px;
+}
+
+.quick-order-form .btn{
+	height: 46px;
+}
+
+/***DESKTOPS***/
+@media(min-width: 1043px) and (max-width: 1271px){
+	.quick-order-form .form-group.captcha{
+		display: flex;
+		flex-direction: column;
+	}
+		
+	.quick-order-form .form-group.captcha .pic{
+		margin-bottom: 10px;
+		padding: 0;
+	}
+}

@@ -1,0 +1,32 @@
+<?$APPLICATION->IncludeComponent("altop:sale.basket.basket", "slide_panel", 
+	array(
+		"PATH_TO_ORDER" => "#SITE_DIR#personal/order/make/",
+		"HIDE_COUPON" => "Y",
+		"COLUMNS_LIST_EXT" => array(
+			0 => "NAME",			
+			1 => "PROPS",
+			2 => "DELETE",
+			3 => "QUANTITY",
+			4 => "SUM",
+			5 => "PROPERTY_ARTNUMBER",
+			6 => "PROPERTY_OBJECT",
+			7 => "PROPERTY_M2_COUNT",
+			8 => "PROPERTY_OLD_PRICE",
+		),
+		"PRICE_VAT_SHOW_VALUE" => "N",
+		"USE_PREPAYMENT" => "N",
+		"QUANTITY_FLOAT" => "Y",
+		"CORRECT_RATIO" => "N",
+		"AUTO_CALCULATION" => "Y",
+		"SET_TITLE" => "N",
+		"ACTION_VARIABLE" => "basketAction",
+		"COMPATIBLE_MODE" => "Y",
+		"USE_GIFTS" => "N",
+		"OFFERS_PROPS" => array(
+			0 => "COLOR_REF",
+			1 => "SIZE",
+		),
+		"USE_ENHANCED_ECOMMERCE" => "N",
+	),
+	false
+);?>

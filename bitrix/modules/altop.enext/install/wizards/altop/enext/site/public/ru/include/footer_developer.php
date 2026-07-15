@@ -1,0 +1,1 @@
+<a href="https://altop.ru" target="_blank">Готовые решения<br />ALTOP MEDIA<i class="icon-altop"></i></a>

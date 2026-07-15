@@ -1,0 +1,188 @@
+.slide-panel-geo-delivery{
+	padding-top: 24px;
+}
+
+/***QUANTITY***/
+.slide-panel-geo-delivery-amount{	
+	display: flex;
+	align-items: center;
+}
+
+.slide-panel-geo-delivery-amount-btn-minus,
+.slide-panel-geo-delivery-amount-btn-plus{
+	width: 36px;
+	min-width: 36px;
+	height: 36px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: #f1f6f7;
+}
+
+.slide-panel-geo-delivery-amount-btn-minus:link,
+.slide-panel-geo-delivery-amount-btn-minus:visited,
+.slide-panel-geo-delivery-amount-btn-plus:link,
+.slide-panel-geo-delivery-amount-btn-plus:visited{
+	text-decoration: none;
+}
+
+.slide-panel-geo-delivery-amount-btn-minus{
+	-moz-border-radius: 5px 0 0 5px;
+	-webkit-border-radius: 5px 0 0 5px;
+	-khtml-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px;
+}
+
+.slide-panel-geo-delivery-amount-btn-plus{
+	-moz-border-radius: 0 5px 5px 0;
+	-webkit-border-radius: 0 5px 5px 0;
+	-khtml-border-radius: 0 5px 5px 0;
+	border-radius: 0 5px 5px 0;
+}
+
+.bx-no-touch .slide-panel-geo-delivery-amount-btn-minus:hover,
+.bx-touch .slide-panel-geo-delivery-amount-btn-minus:active,
+.bx-no-touch .slide-panel-geo-delivery-amount-btn-plus:hover,
+.bx-touch .slide-panel-geo-delivery-amount-btn-plus:active{
+	background: #e3ecef;
+}
+
+.slide-panel-geo-delivery-amount-btn-minus > span,
+.slide-panel-geo-delivery-amount-btn-plus > span{
+	color: #78909c;
+	-webkit-transition: all 0.15s ease 0s;
+	-moz-transition: all 0.15s ease 0s;
+	-o-transition: all 0.15s ease 0s;
+	transition: all 0.15s ease 0s;
+}
+
+.bx-no-touch .slide-panel-geo-delivery-amount-btn-minus:hover > span,
+.bx-touch .slide-panel-geo-delivery-amount-btn-minus:active > span,
+.bx-no-touch .slide-panel-geo-delivery-amount-btn-plus:hover > span,
+.bx-touch .slide-panel-geo-delivery-amount-btn-plus:active > span{
+	color: #6639b6;
+}
+
+.slide-panel-geo-delivery-amount > input{	
+	width: 48px;	
+	height: 36px;	
+	padding: 0;
+	font-family: "Museo Sans Cyrl 300", sans-serif;
+	font-size: 16px;	
+	color: #263238;
+	text-align: center;
+	line-height: 19px;
+	border: none;
+	-webkit-appearance: none;
+	background: #f1f6f7;
+}
+
+.slide-panel-geo-delivery-amount > input:focus{
+	outline: none;
+}
+
+.slide-panel-geo-delivery-amount-measure{		
+	margin-left: 12px;	
+	color: #263238;
+}
+
+/***ITEMS***/
+.slide-panel-geo-delivery-items{
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.slide-panel-geo-delivery-item{
+	flex: 1;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin-left: -32px;
+	margin-right: -32px;
+	padding: 12px 32px;
+	border-bottom: 1px solid #e3ecef;
+	cursor: pointer;
+	-webkit-transition: all 0.15s ease 0s;
+	-moz-transition: all 0.15s ease 0s;
+	-o-transition: all 0.15s ease 0s;
+	transition: all 0.15s ease 0s;
+}
+
+.bx-no-touch .slide-panel-geo-delivery-item:hover,
+.bx-touch .slide-panel-geo-delivery-item:active,
+.slide-panel-geo-delivery-item-active{
+	background: #f1f6f7;
+}
+
+.slide-panel-geo-delivery-item-col-image{
+	padding-right: 12px;
+}
+
+.slide-panel-geo-delivery-item-col-info{
+	flex: 1;
+	padding-right: 12px;
+}
+
+.slide-panel-geo-delivery-item-col-descr{
+	width: 100%;
+	height: 0;
+	opacity: 0;
+	-webkit-transition: height 0.3s ease 0s, margin 0.3s ease 0s, opacity 0.3s ease 0s;
+	-moz-transition: height 0.3s ease 0s, margin 0.3s ease 0s, opacity 0.3s ease 0s;
+	-o-transition: height 0.3s ease 0s, margin 0.3s ease 0s, opacity 0.3s ease 0s;
+	transition: height 0.3s ease 0s, margin 0.3s ease 0s, opacity 0.3s ease 0s;
+}
+
+.slide-panel-geo-delivery-item-active .slide-panel-geo-delivery-item-col-descr{
+	height: auto;
+	margin: 36px 0 12px;
+	opacity: 1;
+}
+
+/***ITEM_IMAGE***/
+.slide-panel-geo-delivery-item-image{
+	width: 74px;
+	min-width: 74px;
+	height: 48px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	border: 1px solid #e3ecef;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+	background: #fff;
+}
+
+.slide-panel-geo-delivery-item-image > img{
+	width: auto;
+	height: auto;
+	max-width: 62px;
+	max-height: 36px;
+}
+
+/***ITEM_TITLE***/
+.slide-panel-geo-delivery-item-title{
+	color: #263238;
+}
+
+/***ITEM_PERIOD***/
+.slide-panel-geo-delivery-item-period{
+	font-size: 14px;
+	color: #78909c;
+	line-height: 17px;
+}
+
+.slide-panel-geo-delivery-item-period > *{
+	display: none;
+}
+
+/***ITEM_PRICE***/
+.slide-panel-geo-delivery-item-price{
+	font-family: "Museo Sans Cyrl 700", sans-serif;
+	color: #000;
+	white-space: nowrap;
+}

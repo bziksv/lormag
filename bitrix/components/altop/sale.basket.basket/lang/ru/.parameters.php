@@ -1,0 +1,36 @@
+<?
+$MESS["SBB_BNAME"] = "Название товара";
+$MESS["SBB_BDISCOUNT"] = "Скидка";
+$MESS["SBB_BWEIGHT"] = "Вес";
+$MESS["SBB_BPROPS"] = "Свойства товара";
+$MESS["SBB_BDELETE"] = "Удалить";
+$MESS["SBB_BDELAY"] = "Отложить";
+$MESS["SBB_BTYPE"] = "Тип цены";
+$MESS["SBB_BPRICE"] = "Цена";
+$MESS["SBB_BQUANTITY"] = "Количество";
+$MESS["SBB_BSUM"] = "Сумма";
+$MESS["SBB_DESC_YES"] = "Да";
+$MESS["SBB_DESC_NO"] = "Нет";
+$MESS["SBB_OFFERS_PROPS"] = "Настройка торговых предложений";
+$MESS["SBB_GIFTS"] = "Настройка \"Подарков\"";
+$MESS["SBB_ANALYTICS_SETTINGS"] = "Настройки аналитики";
+$MESS["SBB_PATH_TO_ORDER"] = "Страница оформления заказа";
+$MESS["SBB_HIDE_COUPON"] = "Спрятать поле ввода купона";
+$MESS["SBB_COLUMNS_LIST"] = "Выводимые колонки";
+$MESS["SBB_VAT_SHOW_VALUE"] = "Отображать значение НДС";
+$MESS["SBB_USE_PREPAYMENT"] = "Использовать предавторизацию для оформления заказа (PayPal Express Checkout)";
+$MESS["SBB_QUANTITY_FLOAT"] = "Использовать дробное значение количества";
+$MESS["SBB_CORRECT_RATIO"] = "Автоматически рассчитывать количество товара кратное коэффициенту";
+$MESS["SBB_AUTO_CALCULATION"] = "Автопересчет корзины";
+$MESS["SBB_ACTION_VARIABLE"] = "Название переменной действия";
+$MESS["SBB_COMPATIBLE_MODE"] = "Включить режим совместимости";
+$MESS["SBB_USE_GIFTS"] = "Показывать блок \"Подарки\"";
+$MESS["SBB_GIFTS_BLOCK_TITLE"] = "Текст заголовка \"Подарки\"";
+$MESS["SBB_GIFTS_BLOCK_TITLE_DEFAULT"] = "Выберите один из подарков";
+$MESS["SBB_GIFTS_HIDE_BLOCK_TITLE"] = "Скрыть заголовок \"Подарки\"";
+$MESS["SBB_GIFTS_TEXT_LABEL_GIFT"] = "Текст метки \"Подарка\"";
+$MESS["SBB_GIFTS_TEXT_LABEL_GIFT_DEFAULT"] = "Подарок";
+$MESS["SBB_GIFTS_MESS_BTN_BUY"] = "Текст кнопки \"Выбрать\"";
+$MESS["SBB_GIFTS_MESS_BTN_BUY_DEFAULT"] = "Выбрать";
+$MESS["SBB_GIFTS_PAGE_ELEMENT_COUNT"] = "Количество элементов в блоке \"Подарки\"";
+?>
