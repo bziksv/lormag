@@ -115,6 +115,26 @@ git add … && git commit -m "…" && git push origin main   # после пра
 
 Шаблон сайта: `bitrix/templates/enext`.
 
+## Инструменты
+
+### Реестр картинок сайта
+
+| | |
+|---|---|
+| URL | http://127.0.0.1:8085/tools/site-images.php |
+| Prod | https://lormag.ru/tools/site-images.php |
+| Файл | `tools/site-images.php` |
+
+Собирает изображения из `b_file` / `upload/`. В таблице:
+
+- где используется (элемент инфоблока, свойство, UF)
+- прямая ссылка на файл
+- кнопка «Скачать»
+- даты создания/изменения (файл + БД)
+- экспорт в Excel (`?export=excel`)
+
+Доступ: localhost или админ Bitrix.
+
 ## Проверка после изменений
 
 ```bash
