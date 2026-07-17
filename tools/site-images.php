@@ -608,7 +608,21 @@ header('Pragma: no-cache');
 		.usage { font-size: 12px; color: var(--text); max-width: 360px; }
 		.usage li { margin: 0 0 4px; }
 		.usage a { color: var(--accent); }
-		.url a { word-break: break-all; color: var(--accent); font-size: 12px; }
+		.url {
+			display: flex; align-items: flex-start; gap: 8px; max-width: 340px;
+		}
+		.url a {
+			word-break: break-all; color: var(--accent); font-size: 12px; flex: 1; min-width: 0;
+		}
+		.copy-btn {
+			flex: 0 0 auto; width: 32px; height: 32px; padding: 0;
+			border: 1px solid var(--line); border-radius: 8px; background: #eef3f9;
+			color: var(--text); cursor: pointer; display: inline-flex;
+			align-items: center; justify-content: center;
+		}
+		.copy-btn:hover { background: #e2eaf4; }
+		.copy-btn.ok { background: #e8f8ef; border-color: #b7e4c7; color: var(--accent2); }
+		.copy-btn svg { width: 16px; height: 16px; display: block; }
 		.dates { font-size: 12px; color: var(--muted); white-space: nowrap; }
 		.dates b { color: var(--text); font-weight: 600; display: block; }
 		.pager { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
@@ -713,9 +727,16 @@ header('Pragma: no-cache');
 						</ul>
 						<div style="margin-top:6px;color:var(--muted)">модуль: <?=htmlspecialchars($r['MODULE_ID'] ?: '—')?></div>
 					</td>
-					<td class="url">
-						<a href="<?=htmlspecialchars($r['URL'])?>" target="_blank" rel="noopener"><?=htmlspecialchars($r['URL'])?></a>
-						<div style="margin-top:4px;color:var(--muted)"><?=htmlspecialchars($r['PATH'])?></div>
+					<td>
+						<div class="url">
+							<a href="<?=htmlspecialchars($r['URL'])?>" target="_blank" rel="noopener"><?=htmlspecialchars($r['URL'])?></a>
+							<button type="button" class="copy-btn" data-copy="<?=htmlspecialchars($r['URL'], ENT_QUOTES)?>" title="Копировать ссылку" aria-label="Копировать ссылку">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<rect x="9" y="9" width="13" height="13" rx="2"></rect>
+									<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+								</svg>
+							</button>
+						</div>
 					</td>
 					<td class="col-dl">
 						<div class="actions">
@@ -756,5 +777,39 @@ header('Pragma: no-cache');
 		<?php endif; ?>
 	</div>
 </div>
+<script>
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+	btn.addEventListener('click', function () {
+		var text = btn.getAttribute('data-copy') || '';
+		function done() {
+			btn.classList.add('ok');
+			btn.title = 'Скопировано';
+			setTimeout(function () {
+				btn.classList.remove('ok');
+				btn.title = 'Копировать ссылку';
+			}, 1200);
+		}
+		if (navigator.clipboard && navigator.clipboard.writeText) {
+			navigator.clipboard.writeText(text).then(done).catch(function () {
+				fallbackCopy(text, done);
+			});
+		} else {
+			fallbackCopy(text, done);
+		}
+	});
+});
+function fallbackCopy(text, done) {
+	var ta = document.createElement('textarea');
+	ta.value = text;
+	ta.setAttribute('readonly', '');
+	ta.style.position = 'fixed';
+	ta.style.left = '-9999px';
+	document.body.appendChild(ta);
+	ta.select();
+	try { document.execCommand('copy'); } catch (e) {}
+	document.body.removeChild(ta);
+	done();
+}
+</script>
 </body>
 </html>
