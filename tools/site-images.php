@@ -179,8 +179,8 @@ class LormagSiteImages
 		$idList = implode(',', array_map('intval', $ids));
 
 		$res = $DB->Query("
-			SELECT e.ID, e.IBLOCK_ID, e.NAME, e.PREVIEW_PICTURE, e.DETAIL_PICTURE, e.CODE,
-				b.NAME AS IBLOCK_NAME
+			SELECT e.ID, e.IBLOCK_ID, e.IBLOCK_SECTION_ID, e.NAME, e.PREVIEW_PICTURE, e.DETAIL_PICTURE, e.CODE,
+				b.NAME AS IBLOCK_NAME, b.DETAIL_PAGE_URL
 			FROM b_iblock_element e
 			LEFT JOIN b_iblock b ON b.ID = e.IBLOCK_ID
 			WHERE e.PREVIEW_PICTURE IN ({$idList}) OR e.DETAIL_PICTURE IN ({$idList})
@@ -190,17 +190,25 @@ class LormagSiteImages
 				. ' / элемент #' . $row['ID'] . ' «' . $row['NAME'] . '»';
 			$admin = '/bitrix/admin/iblock_element_edit.php?IBLOCK_ID=' . (int)$row['IBLOCK_ID']
 				. '&type=&ID=' . (int)$row['ID'] . '&lang=ru';
+			$public = self::buildPublicUrl((string)$row['DETAIL_PAGE_URL'], [
+				'#ELEMENT_ID#' => (string)$row['ID'],
+				'#ELEMENT_CODE#' => (string)($row['CODE'] ?: $row['ID']),
+				'#SECTION_ID#' => (string)$row['IBLOCK_SECTION_ID'],
+				'#SECTION_CODE#' => '',
+				'#SECTION_CODE_PATH#' => self::sectionCodePath((int)$row['IBLOCK_SECTION_ID']),
+			]);
+			$links = ($public !== '' ? ' (site: ' . $public . ')' : '') . ' (admin: ' . $admin . ')';
 			if ((int)$row['PREVIEW_PICTURE'] && isset($map[(int)$row['PREVIEW_PICTURE']])) {
-				$map[(int)$row['PREVIEW_PICTURE']][] = $el . ' — PREVIEW_PICTURE (' . $admin . ')';
+				$map[(int)$row['PREVIEW_PICTURE']][] = $el . ' — PREVIEW_PICTURE' . $links;
 			}
 			if ((int)$row['DETAIL_PICTURE'] && isset($map[(int)$row['DETAIL_PICTURE']])) {
-				$map[(int)$row['DETAIL_PICTURE']][] = $el . ' — DETAIL_PICTURE (' . $admin . ')';
+				$map[(int)$row['DETAIL_PICTURE']][] = $el . ' — DETAIL_PICTURE' . $links;
 			}
 		}
 
 		$res = $DB->Query("
-			SELECT s.ID, s.IBLOCK_ID, s.NAME, s.PICTURE, s.DETAIL_PICTURE,
-				b.NAME AS IBLOCK_NAME
+			SELECT s.ID, s.IBLOCK_ID, s.IBLOCK_SECTION_ID, s.NAME, s.CODE, s.PICTURE, s.DETAIL_PICTURE,
+				b.NAME AS IBLOCK_NAME, b.SECTION_PAGE_URL
 			FROM b_iblock_section s
 			LEFT JOIN b_iblock b ON b.ID = s.IBLOCK_ID
 			WHERE s.PICTURE IN ({$idList}) OR s.DETAIL_PICTURE IN ({$idList})
@@ -210,19 +218,25 @@ class LormagSiteImages
 				. ' / раздел #' . $row['ID'] . ' «' . $row['NAME'] . '»';
 			$admin = '/bitrix/admin/iblock_section_edit.php?IBLOCK_ID=' . (int)$row['IBLOCK_ID']
 				. '&ID=' . (int)$row['ID'] . '&lang=ru';
+			$public = self::buildPublicUrl((string)$row['SECTION_PAGE_URL'], [
+				'#SECTION_ID#' => (string)$row['ID'],
+				'#SECTION_CODE#' => (string)($row['CODE'] ?: $row['ID']),
+				'#SECTION_CODE_PATH#' => self::sectionCodePath((int)$row['ID']),
+			]);
+			$links = ($public !== '' ? ' (site: ' . $public . ')' : '') . ' (admin: ' . $admin . ')';
 			if ((int)$row['PICTURE'] && isset($map[(int)$row['PICTURE']])) {
-				$map[(int)$row['PICTURE']][] = $sec . ' — PICTURE (' . $admin . ')';
+				$map[(int)$row['PICTURE']][] = $sec . ' — PICTURE' . $links;
 			}
 			if ((int)$row['DETAIL_PICTURE'] && isset($map[(int)$row['DETAIL_PICTURE']])) {
-				$map[(int)$row['DETAIL_PICTURE']][] = $sec . ' — DETAIL_PICTURE (' . $admin . ')';
+				$map[(int)$row['DETAIL_PICTURE']][] = $sec . ' — DETAIL_PICTURE' . $links;
 			}
 		}
 
 		$res = $DB->Query("
 			SELECT p.IBLOCK_ELEMENT_ID, p.VALUE, p.IBLOCK_PROPERTY_ID,
-				e.NAME AS ELEMENT_NAME, e.IBLOCK_ID,
+				e.NAME AS ELEMENT_NAME, e.IBLOCK_ID, e.CODE AS ELEMENT_CODE, e.IBLOCK_SECTION_ID,
 				pr.NAME AS PROP_NAME, pr.CODE AS PROP_CODE,
-				b.NAME AS IBLOCK_NAME
+				b.NAME AS IBLOCK_NAME, b.DETAIL_PAGE_URL
 			FROM b_iblock_element_property p
 			INNER JOIN b_iblock_property pr ON pr.ID = p.IBLOCK_PROPERTY_ID AND pr.PROPERTY_TYPE = 'F'
 			INNER JOIN b_iblock_element e ON e.ID = p.IBLOCK_ELEMENT_ID
@@ -236,9 +250,17 @@ class LormagSiteImages
 			}
 			$admin = '/bitrix/admin/iblock_element_edit.php?IBLOCK_ID=' . (int)$row['IBLOCK_ID']
 				. '&type=&ID=' . (int)$row['IBLOCK_ELEMENT_ID'] . '&lang=ru';
+			$public = self::buildPublicUrl((string)$row['DETAIL_PAGE_URL'], [
+				'#ELEMENT_ID#' => (string)$row['IBLOCK_ELEMENT_ID'],
+				'#ELEMENT_CODE#' => (string)($row['ELEMENT_CODE'] ?: $row['IBLOCK_ELEMENT_ID']),
+				'#SECTION_ID#' => (string)$row['IBLOCK_SECTION_ID'],
+				'#SECTION_CODE#' => '',
+				'#SECTION_CODE_PATH#' => self::sectionCodePath((int)$row['IBLOCK_SECTION_ID']),
+			]);
+			$links = ($public !== '' ? ' (site: ' . $public . ')' : '') . ' (admin: ' . $admin . ')';
 			$map[$fid][] = 'IBLOCK «' . $row['IBLOCK_NAME'] . '» #' . $row['IBLOCK_ID']
 				. ' / элемент #' . $row['IBLOCK_ELEMENT_ID'] . ' «' . $row['ELEMENT_NAME'] . '»'
-				. ' — свойство «' . $row['PROP_NAME'] . '» [' . $row['PROP_CODE'] . '] (' . $admin . ')';
+				. ' — свойство «' . $row['PROP_NAME'] . '» [' . $row['PROP_CODE'] . ']' . $links;
 		}
 
 		// User fields (UF) — file type in b_uts_* / b_utm_*
@@ -323,6 +345,53 @@ class LormagSiteImages
 			return round($bytes / 1024, 1) . ' KB';
 		}
 		return round($bytes / 1048576, 2) . ' MB';
+	}
+
+	public static function sectionCodePath(int $sectionId): string
+	{
+		static $cache = [];
+		if ($sectionId <= 0) {
+			return '';
+		}
+		if (isset($cache[$sectionId])) {
+			return $cache[$sectionId];
+		}
+
+		global $DB;
+		$codes = [];
+		$current = $sectionId;
+		while ($current > 0) {
+			$row = $DB->Query("
+				SELECT ID, IBLOCK_SECTION_ID, CODE
+				FROM b_iblock_section
+				WHERE ID = " . (int)$current . "
+				LIMIT 1
+			")->Fetch();
+			if (!$row) {
+				break;
+			}
+			array_unshift($codes, (string)($row['CODE'] ?: $row['ID']));
+			$current = (int)$row['IBLOCK_SECTION_ID'];
+		}
+
+		return $cache[$sectionId] = implode('/', $codes);
+	}
+
+	public static function buildPublicUrl(string $template, array $replace): string
+	{
+		$template = trim($template);
+		if ($template === '') {
+			return '';
+		}
+
+		$url = strtr($template, $replace + [
+			'#SITE_DIR#' => '/',
+			'// ' => '/',
+		]);
+		$url = preg_replace('#/+#', '/', $url);
+		$url = '/' . ltrim($url, '/');
+
+		return self::absoluteUrl($url);
 	}
 
 	public static function downloadFile(int $id): void
@@ -629,7 +698,12 @@ header('Pragma: no-cache');
 								<?php
 								$uHtml = htmlspecialchars($u);
 								$uHtml = preg_replace(
-									'#\((/bitrix/admin/[^)]+)\)#',
+									'#\(site: (https?://[^)]+)\)#',
+									'(<a href="$1" target="_blank" rel="noopener">сайт</a>)',
+									$uHtml
+								);
+								$uHtml = preg_replace(
+									'#\(admin: (/bitrix/admin/[^)]+)\)#',
 									'(<a href="$1" target="_blank" rel="noopener">админка</a>)',
 									$uHtml
 								);
