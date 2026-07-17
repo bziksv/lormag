@@ -525,6 +525,12 @@ header('Pragma: no-cache');
 		th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
 		th { background: #f7f9fc; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); position: sticky; top: 0; z-index: 1; }
 		tr:hover td { background: #fafbfd; }
+		th.col-dl, td.col-dl {
+			vertical-align: middle;
+			text-align: center;
+			width: 112px;
+			white-space: nowrap;
+		}
 		.thumb {
 			width: 64px; height: 64px; object-fit: contain; background: #f3f5f8;
 			border: 1px solid var(--line); border-radius: 8px;
@@ -538,7 +544,17 @@ header('Pragma: no-cache');
 		.dates b { color: var(--text); font-weight: 600; display: block; }
 		.pager { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
 		.pager span { color: var(--muted); font-size: 13px; }
-		.actions { display: flex; flex-direction: column; gap: 6px; min-width: 110px; }
+		.actions {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-width: 0;
+		}
+		.actions .btn.sm {
+			white-space: nowrap;
+			min-width: 88px;
+			justify-content: center;
+		}
 	</style>
 </head>
 <body>
@@ -587,7 +603,7 @@ header('Pragma: no-cache');
 				<th>Превью</th>
 				<th>Где используется</th>
 				<th>Прямая ссылка</th>
-				<th>Скачать</th>
+				<th class="col-dl">Скачать</th>
 				<th>Даты</th>
 				<th>Файл</th>
 			</tr>
@@ -627,12 +643,14 @@ header('Pragma: no-cache');
 						<a href="<?=htmlspecialchars($r['URL'])?>" target="_blank" rel="noopener"><?=htmlspecialchars($r['URL'])?></a>
 						<div style="margin-top:4px;color:var(--muted)"><?=htmlspecialchars($r['PATH'])?></div>
 					</td>
-					<td class="actions">
+					<td class="col-dl">
+						<div class="actions">
 						<?php if ($r['EXISTS']): ?>
 							<a class="btn sm" href="/tools/site-images.php?action=download&amp;id=<?=$r['ID']?>">Скачать</a>
 						<?php else: ?>
 							<span class="missing">недоступно</span>
 						<?php endif; ?>
+						</div>
 					</td>
 					<td class="dates">
 						<b>Создан</b><?=htmlspecialchars($r['CREATED'] ?: '—')?>
