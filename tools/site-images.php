@@ -19,6 +19,8 @@ class LormagSiteImages
 	public const PAGE_SIZE_DEFAULT = 100;
 	public const PAGE_SIZE_MAX = 500;
 	public const EXPORT_MAX = 20000;
+	/** Прямые ссылки всегда на боевой домен, чтобы их можно было копировать */
+	public const PUBLIC_BASE = 'https://lormag.ru';
 
 	public static function isAllowed(): bool
 	{
@@ -49,9 +51,7 @@ class LormagSiteImages
 		if (preg_match('#^https?://#i', $path)) {
 			return $path;
 		}
-		$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-		$host = (string)($_SERVER['HTTP_HOST'] ?? '127.0.0.1:8085');
-		return $scheme . '://' . $host . $path;
+		return self::PUBLIC_BASE . $path;
 	}
 
 	public static function imageWhereSql(): string
@@ -195,6 +195,26 @@ class LormagSiteImages
 			}
 			if ((int)$row['DETAIL_PICTURE'] && isset($map[(int)$row['DETAIL_PICTURE']])) {
 				$map[(int)$row['DETAIL_PICTURE']][] = $el . ' — DETAIL_PICTURE (' . $admin . ')';
+			}
+		}
+
+		$res = $DB->Query("
+			SELECT s.ID, s.IBLOCK_ID, s.NAME, s.PICTURE, s.DETAIL_PICTURE,
+				b.NAME AS IBLOCK_NAME
+			FROM b_iblock_section s
+			LEFT JOIN b_iblock b ON b.ID = s.IBLOCK_ID
+			WHERE s.PICTURE IN ({$idList}) OR s.DETAIL_PICTURE IN ({$idList})
+		");
+		while ($row = $res->Fetch()) {
+			$sec = 'IBLOCK «' . $row['IBLOCK_NAME'] . '» #' . $row['IBLOCK_ID']
+				. ' / раздел #' . $row['ID'] . ' «' . $row['NAME'] . '»';
+			$admin = '/bitrix/admin/iblock_section_edit.php?IBLOCK_ID=' . (int)$row['IBLOCK_ID']
+				. '&ID=' . (int)$row['ID'] . '&lang=ru';
+			if ((int)$row['PICTURE'] && isset($map[(int)$row['PICTURE']])) {
+				$map[(int)$row['PICTURE']][] = $sec . ' — PICTURE (' . $admin . ')';
+			}
+			if ((int)$row['DETAIL_PICTURE'] && isset($map[(int)$row['DETAIL_PICTURE']])) {
+				$map[(int)$row['DETAIL_PICTURE']][] = $sec . ' — DETAIL_PICTURE (' . $admin . ')';
 			}
 		}
 
@@ -444,6 +464,8 @@ $qs = static function (array $extra = []) use ($q, $module, $usage, $limit, $pag
 };
 
 header('Content-Type: text/html; charset=utf-8');
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Pragma: no-cache');
 ?>
 <!doctype html>
 <html lang="ru">
