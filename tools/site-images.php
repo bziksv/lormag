@@ -83,7 +83,14 @@ class LormagSiteImages
 		$where = ['(' . self::imageWhereSql() . ')'];
 		if ($q !== '') {
 			$safe = $DB->ForSql($q);
-			$where[] = "(FILE_NAME LIKE '%{$safe}%' OR ORIGINAL_NAME LIKE '%{$safe}%' OR SUBDIR LIKE '%{$safe}%' OR CAST(ID AS CHAR) = '{$safe}')";
+			$fileMatch = "(FILE_NAME LIKE '%{$safe}%' OR ORIGINAL_NAME LIKE '%{$safe}%' OR SUBDIR LIKE '%{$safe}%' OR CAST(ID AS CHAR) = '{$safe}')";
+			$productFileIds = self::findFileIdsByProductQuery($q);
+			if ($productFileIds) {
+				$idList = implode(',', $productFileIds);
+				$where[] = "({$fileMatch} OR ID IN ({$idList}))";
+			} else {
+				$where[] = $fileMatch;
+			}
 		}
 		if ($module !== '') {
 			$where[] = "MODULE_ID = '" . $DB->ForSql($module) . "'";
@@ -162,6 +169,134 @@ class LormagSiteImages
 		}
 
 		return ['total' => $total, 'rows' => $out];
+	}
+
+	/**
+	 * Умный поиск: название товара/раздела, артикул, ID элемента/раздела.
+	 * @return int[] file IDs
+	 */
+	public static function findFileIdsByProductQuery(string $q): array
+	{
+		global $DB;
+
+		$q = trim($q);
+		if ($q === '') {
+			return [];
+		}
+
+		$safe = $DB->ForSql($q);
+		$ids = [];
+		$elementIds = [];
+
+		// Exact element/section ID
+		if (ctype_digit($q)) {
+			$id = (int)$q;
+			$elementIds[$id] = true;
+
+			$res = $DB->Query("
+				SELECT PREVIEW_PICTURE, DETAIL_PICTURE
+				FROM b_iblock_element
+				WHERE ID = {$id}
+			");
+			if ($row = $res->Fetch()) {
+				if ((int)$row['PREVIEW_PICTURE'] > 0) {
+					$ids[(int)$row['PREVIEW_PICTURE']] = true;
+				}
+				if ((int)$row['DETAIL_PICTURE'] > 0) {
+					$ids[(int)$row['DETAIL_PICTURE']] = true;
+				}
+			}
+
+			$res = $DB->Query("
+				SELECT PICTURE, DETAIL_PICTURE
+				FROM b_iblock_section
+				WHERE ID = {$id}
+			");
+			if ($row = $res->Fetch()) {
+				if ((int)$row['PICTURE'] > 0) {
+					$ids[(int)$row['PICTURE']] = true;
+				}
+				if ((int)$row['DETAIL_PICTURE'] > 0) {
+					$ids[(int)$row['DETAIL_PICTURE']] = true;
+				}
+			}
+		}
+
+		// Name / code of elements
+		$res = $DB->Query("
+			SELECT ID, PREVIEW_PICTURE, DETAIL_PICTURE
+			FROM b_iblock_element
+			WHERE NAME LIKE '%{$safe}%' OR CODE LIKE '%{$safe}%'
+			LIMIT 500
+		");
+		while ($row = $res->Fetch()) {
+			$elementIds[(int)$row['ID']] = true;
+			if ((int)$row['PREVIEW_PICTURE'] > 0) {
+				$ids[(int)$row['PREVIEW_PICTURE']] = true;
+			}
+			if ((int)$row['DETAIL_PICTURE'] > 0) {
+				$ids[(int)$row['DETAIL_PICTURE']] = true;
+			}
+		}
+
+		// Name / code of sections
+		$res = $DB->Query("
+			SELECT ID, PICTURE, DETAIL_PICTURE
+			FROM b_iblock_section
+			WHERE NAME LIKE '%{$safe}%' OR CODE LIKE '%{$safe}%'
+			LIMIT 500
+		");
+		while ($row = $res->Fetch()) {
+			if ((int)$row['PICTURE'] > 0) {
+				$ids[(int)$row['PICTURE']] = true;
+			}
+			if ((int)$row['DETAIL_PICTURE'] > 0) {
+				$ids[(int)$row['DETAIL_PICTURE']] = true;
+			}
+		}
+
+		// Article (CML2_ARTICLE / ARTICLS and similar)
+		$res = $DB->Query("
+			SELECT DISTINCT ep.IBLOCK_ELEMENT_ID, e.PREVIEW_PICTURE, e.DETAIL_PICTURE
+			FROM b_iblock_element_property ep
+			INNER JOIN b_iblock_property pr ON pr.ID = ep.IBLOCK_PROPERTY_ID
+			INNER JOIN b_iblock_element e ON e.ID = ep.IBLOCK_ELEMENT_ID
+			WHERE (
+				pr.CODE IN ('CML2_ARTICLE', 'ARTICLS', 'ARTNUMBER', 'ARTICLE')
+				OR pr.NAME LIKE '%ртикул%'
+			)
+			AND ep.VALUE LIKE '%{$safe}%'
+			LIMIT 500
+		");
+		while ($row = $res->Fetch()) {
+			$elementIds[(int)$row['IBLOCK_ELEMENT_ID']] = true;
+			if ((int)$row['PREVIEW_PICTURE'] > 0) {
+				$ids[(int)$row['PREVIEW_PICTURE']] = true;
+			}
+			if ((int)$row['DETAIL_PICTURE'] > 0) {
+				$ids[(int)$row['DETAIL_PICTURE']] = true;
+			}
+		}
+
+		// File properties of matched elements
+		if ($elementIds) {
+			$elList = implode(',', array_map('intval', array_keys($elementIds)));
+			$res = $DB->Query("
+				SELECT DISTINCT ep.VALUE
+				FROM b_iblock_element_property ep
+				INNER JOIN b_iblock_property pr ON pr.ID = ep.IBLOCK_PROPERTY_ID AND pr.PROPERTY_TYPE = 'F'
+				WHERE ep.IBLOCK_ELEMENT_ID IN ({$elList})
+					AND ep.VALUE REGEXP '^[0-9]+$'
+			");
+			while ($row = $res->Fetch()) {
+				$fid = (int)$row['VALUE'];
+				if ($fid > 0) {
+					$ids[$fid] = true;
+				}
+			}
+		}
+
+		return array_map('intval', array_keys($ids));
 	}
 
 	/** @param int[] $ids @return array<int,string[]> */
@@ -647,7 +782,7 @@ header('Pragma: no-cache');
 
 	<form class="toolbar" method="get" action="/tools/site-images.php">
 		<label>Поиск
-			<input type="search" name="q" value="<?=htmlspecialchars($q)?>" placeholder="имя, путь, ID">
+			<input type="search" name="q" value="<?=htmlspecialchars($q)?>" placeholder="название, артикул, ID товара">
 		</label>
 		<label>Модуль
 			<select name="module">
