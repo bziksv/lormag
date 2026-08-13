@@ -128,7 +128,12 @@ $config = \Bitrix\Main\Web\Json::encode($arResult['CONFIG']);?>
 				// Текст согласия ведёт на политику — не открываем попап Bitrix
 				return;
 			}
-			this.requestForItem(item);
+			// Чекбокс только ставит галочку; попап с текстом соглашения не показываем
+			if (e.target === item.inputNode || (e.target && e.target.closest && e.target.closest('input[type="checkbox"]'))) {
+				return;
+			}
+			item.inputNode.checked = !item.inputNode.checked;
+			BX.onCustomEvent(item.formNode, 'OnFormInputUserConsentChange');
 			e.preventDefault();
 		},
 		onSubmit: function(item, e) {
@@ -148,7 +153,8 @@ $config = \Bitrix\Main\Web\Json::encode($arResult['CONFIG']);?>
 				return true;
 			}
 
-			this.requestForItem(item);
+			// Без попапа: просто блокируем отправку, пока не отмечен чекбокс
+			item.inputNode.focus();
 			return false;
 		},
 		requestForItem: function(item) {
