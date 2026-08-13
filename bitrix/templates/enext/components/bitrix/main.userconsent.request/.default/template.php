@@ -5,7 +5,7 @@ $config = \Bitrix\Main\Web\Json::encode($arResult['CONFIG']);?>
 <label data-bx-user-consent="<?=htmlspecialcharsbx($config)?>" class="main-user-consent-request">
 	<input type="checkbox" value="Y"<?=($arParams['IS_CHECKED'] ? ' checked' : '')?> name="<?=htmlspecialcharsbx($arParams['INPUT_NAME'])?>" />
 	<span class="check-cont"><span class="check"><i class="icon-ok-b"></i></span></span>
-	<a class="check-title"><?=htmlspecialcharsbx($arResult['INPUT_LABEL'])?></a>
+	<a class="check-title" href="/upload/politics-lormag.png" target="_blank" rel="noopener"><?=htmlspecialcharsbx($arResult['INPUT_LABEL'])?></a>
 </label>
 
 <script type="text/html" data-bx-template="main-user-consent-request-loader">
@@ -123,6 +123,11 @@ $config = \Bitrix\Main\Web\Json::encode($arResult['CONFIG']);?>
 			}
 		},		
 		onClick: function(item, e) {
+			var link = e.target && e.target.closest ? e.target.closest('a.check-title[href]') : null;
+			if (link) {
+				// Текст согласия ведёт на политику — не открываем попап Bitrix
+				return;
+			}
 			this.requestForItem(item);
 			e.preventDefault();
 		},
