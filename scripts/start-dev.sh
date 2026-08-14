@@ -63,7 +63,7 @@ sleep 1
 HTTP=$(curl -sS -o /tmp/lormag-check.html -w '%{http_code}' --max-time 60 http://127.0.0.1:8085/ || echo 000)
 
 echo "soft http://127.0.0.1:8085/ → HTTP $HTTP"
-echo "php-fpm :9085 (ondemand, max 2 workers, 256M)"
+echo "php-fpm :9085 (ondemand, max 2 workers, 512M)"
 echo "stop: ./scripts/stop-dev.sh"
 
 if [ "$HTTP" = "000" ]; then
