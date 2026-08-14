@@ -57,4 +57,8 @@
 
 .prime-alerts-live-notice {
 	margin-top: 8px;
+	margin-bottom: 18px;
+}
+.prime-alerts-live-notice .prime-alerts-notice {
+	margin: 0;
 }
