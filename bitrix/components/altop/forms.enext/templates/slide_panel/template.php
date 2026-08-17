@@ -48,13 +48,14 @@ $containerName = "slide-panel-form-".$obName;?>
 		<?}
 		// ===================================================
 		
-		if($arParams["USE_CAPTCHA"]) {?>
+		if($arParams["USE_CAPTCHA"]) {
+			$captchaSid = $APPLICATION->CaptchaGetCode();?>
 			<div class="form-group captcha">
-				<div class="pic 15" style="display:none;">								
-					<img src="" width="100" height="36" alt="CAPTCHA" />
-				</div>							
+				<div class="pic">
+					<img src="/bitrix/tools/captcha.php?captcha_sid=<?=htmlspecialcharsbx($captchaSid)?>" width="100" height="36" alt="CAPTCHA" />
+				</div>
 				<input type="text" maxlength="5" name="CAPTCHA_WORD" class="form-control" placeholder="<?=Loc::getMessage('FORMS_SLIDE_PANEL_CAPTCHA_WORD')?>" />
-				<input type="hidden" name="CAPTCHA_SID" value="" />
+				<input type="hidden" name="CAPTCHA_SID" value="<?=htmlspecialcharsbx($captchaSid)?>" />
 			</div>
 		<?}?>		
 		<div class="form-group">
