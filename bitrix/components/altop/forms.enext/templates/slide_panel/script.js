@@ -67,7 +67,8 @@
                                                 },
                                                 initialCountry: !!result.COUNTRY ? result.COUNTRY : this.defaultCountry,
                                                 nationalMode: false,
-                                                preferredCountries: ['ru', 'by', 'ua', 'kz'],
+                                                preferredCountries: ['ru', 'by', 'kz'],
+                                                excludeCountries: ['ua'],
                                                 separateDialCode: true,
                                                 utilsScript: '/bitrix/js/altop.enext/intlTelInput/utils.js'
                                             });

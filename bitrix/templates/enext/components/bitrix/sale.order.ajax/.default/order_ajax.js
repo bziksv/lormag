@@ -6475,7 +6475,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 						},
 						initialCountry: BX.getCookie(BX.message('COOKIE_NAME') + '_ENEXT_FORMS_COUNTRY') ? BX.getCookie(BX.message('COOKIE_NAME') + '_ENEXT_FORMS_COUNTRY') : (this.initialCountry != '' ? this.initialCountry : this.params.INITIAL_COUNTRY),
 						nationalMode: false,
-						preferredCountries: ['ru', 'by', 'ua', 'kz'],
+						preferredCountries: ['ru', 'by', 'kz'],
+						excludeCountries: ['ua'],
 						separateDialCode: true,
 						utilsScript: '/bitrix/js/altop.enext/intlTelInput/utils.js'
 					});

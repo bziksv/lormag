@@ -145,7 +145,8 @@ if($arResult["SHOW_SMS_FIELD"] == true)
 												hiddenInput: 'USER_PHONE_NUMBER',
 												initialCountry: '<?=$initialCountry?>',
 												nationalMode: false,
-												preferredCountries: ['ru', 'by', 'ua', 'kz'],
+												preferredCountries: ['ru', 'by', 'kz'],
+												excludeCountries: ['ua'],
 												separateDialCode: true,
 												utilsScript: '/bitrix/js/altop.enext/intlTelInput/utils.js'
 											});
