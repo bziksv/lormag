@@ -35,19 +35,17 @@ $containerName = "slide-panel-form-".$obName;?>
 		}
 		unset($arProp);
 		
-		// ============= ЗАМЕНЁН БЛОК СОГЛАСИЯ =============
 		if($arParams["USER_CONSENT"]) {?>
 			<div class="form-group form-group-checkbox">
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" name="USER_CONSENT" value="Y" <?=($arParams["USER_CONSENT_IS_CHECKED"] ? 'checked' : '')?> required>
-						<span>Нажимая на эту кнопку, я даю свое согласие на обработку персональных данных и соглашаюсь с условиями <a target="_blank" href="/upload/politics-lormag.png">политики обработки персональных данных</a>.</span>
+						<span class="check-title">Нажимая на эту кнопку, я даю свое согласие на обработку персональных данных и соглашаюсь с условиями <a target="_blank" href="/upload/politics-lormag.png" rel="noopener">политики обработки персональных данных</a>.</span>
 					</label>
 				</div>
 			</div>
 		<?}
-		// ===================================================
-		
+
 		if($arParams["USE_CAPTCHA"]) {
 			$captchaSid = $APPLICATION->CaptchaGetCode();?>
 			<div class="form-group captcha">
@@ -57,10 +55,10 @@ $containerName = "slide-panel-form-".$obName;?>
 				<input type="text" maxlength="5" name="CAPTCHA_WORD" class="form-control" placeholder="<?=Loc::getMessage('FORMS_SLIDE_PANEL_CAPTCHA_WORD')?>" />
 				<input type="hidden" name="CAPTCHA_SID" value="<?=htmlspecialcharsbx($captchaSid)?>" />
 			</div>
-		<?}?>		
+		<?}?>
 		<div class="form-group">
 			<button type="submit" class="btn btn-buy"><span><?=Loc::getMessage("FORMS_SLIDE_PANEL_SUBMIT")?></span></button>
-		</div>		
+		</div>
 	</form>
 	<div class="alert" style="display: none;"></div>
 </div>

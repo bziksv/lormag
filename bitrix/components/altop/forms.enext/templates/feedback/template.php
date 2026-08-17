@@ -63,11 +63,31 @@ $containerName = "feedback-".$obName;?>
 				<?if($arParams["USER_CONSENT"]) {?>
 					<input type="hidden" name="USER_CONSENT_ID" value="<?=$arParams['USER_CONSENT_ID']?>" />
 					<input type="hidden" name="USER_CONSENT_URL" value="" />
-					<div class="col-xs-12">
+					<div class="col-xs-12" style="clear: both;">
 						<div class="form-group form-group-checkbox">
-
-<span>Нажимая на эту кнопку, я даю свое согласие на обработку персональных данных и соглашаюсь с условиями <a target="_blank" href="/upload/politics-lormag.png">политики обработки персональных данных</a>.</span>
-
+							<div class="checkbox">
+								<?$fields = array();
+								foreach($arResult["IBLOCK"]["PROPERTIES"] as $arProp) {
+									if($arProp["USER_TYPE"] != "HTML" && $arProp["CODE"] != "SOURCE_URL")
+										$fields[] = $arProp["NAME"];
+								}
+								unset($arProp);?>
+								<?$APPLICATION->IncludeComponent("bitrix:main.userconsent.request", "",
+									array(
+										"ID" => $arParams["USER_CONSENT_ID"],
+										"INPUT_NAME" => "USER_CONSENT",
+										"IS_CHECKED" => $arParams["USER_CONSENT_IS_CHECKED"],
+										"AUTO_SAVE" => "N",
+										"IS_LOADED" => $arParams["USER_CONSENT_IS_LOADED"],
+										"REPLACE" => array(
+											"button_caption" => Loc::getMessage("FORMS_FEEDBACK_SUBMIT"),
+											"fields" => $fields
+										)
+									),
+									$component
+								);?>
+								<?unset($fields);?>
+							</div>
 						</div>
 					</div>
 				<?}?>
