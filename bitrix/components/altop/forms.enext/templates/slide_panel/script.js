@@ -132,11 +132,10 @@
                                     fields[this.props[i].CODE].validators.callback = {
                                         message: BX.message('FORMS_PHONE_WRONG'),
                                         callback: BX.delegate(function(value, validator, $field) {
-                                            if(!this.iti.isValidNumber()) {
-                                                return false;
-                                            } else {
-                                                return true;
+                                            if(!this.iti || typeof this.iti.isValidNumber !== 'function') {
+                                                return !!(value && String(value).replace(/\D/g, '').length > 5);
                                             }
+                                            return !!this.iti.isValidNumber();
                                         }, this)
                                     };
                                 } else {

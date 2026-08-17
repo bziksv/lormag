@@ -12,7 +12,7 @@ $containerName = "slide-panel-form-".$obName;?>
 	<?if(!empty($arResult["IBLOCK"]["DESCRIPTION"])) {?>
 		<div class="slide-panel__form-caption"><?=$arResult["IBLOCK"]["DESCRIPTION"]?></div>
 	<?}?>
-	<form action="javascript:void(0)">		
+	<form action="javascript:void(0)" novalidate>
 		<input type="hidden" name="IBLOCK_STRING" value="<?=$arResult['IBLOCK']['STRING']?>" />
 		<?foreach($arResult["IBLOCK"]["PROPERTIES"] as $arProp) {
 			if($arProp["CODE"] == "OBJECT_ID" || $arProp["CODE"] == "PRODUCT_ID" || $arProp["CODE"] == "OFFER_ID") {?>
@@ -36,12 +36,31 @@ $containerName = "slide-panel-form-".$obName;?>
 		unset($arProp);
 		
 		if($arParams["USER_CONSENT"]) {?>
+			<input type="hidden" name="USER_CONSENT_ID" value="<?=$arParams['USER_CONSENT_ID']?>" />
+			<input type="hidden" name="USER_CONSENT_URL" value="" />
 			<div class="form-group form-group-checkbox">
 				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="USER_CONSENT" value="Y" <?=($arParams["USER_CONSENT_IS_CHECKED"] ? 'checked' : '')?> required>
-						<span class="check-title">Нажимая на эту кнопку, я даю свое согласие на обработку персональных данных и соглашаюсь с условиями <a target="_blank" href="/upload/politics-lormag.png" rel="noopener">политики обработки персональных данных</a>.</span>
-					</label>
+					<?$fields = array();
+					foreach($arResult["IBLOCK"]["PROPERTIES"] as $arProp) {
+						if($arProp["CODE"] != "OBJECT_ID" && $arProp["CODE"] != "PRODUCT_ID" && $arProp["CODE"] != "OFFER_ID" && $arProp["USER_TYPE"] != "HTML")
+							$fields[] = $arProp["NAME"];
+					}
+					unset($arProp);?>
+					<?$APPLICATION->IncludeComponent("bitrix:main.userconsent.request", "",
+						array(
+							"ID" => $arParams["USER_CONSENT_ID"],
+							"INPUT_NAME" => "USER_CONSENT",
+							"IS_CHECKED" => $arParams["USER_CONSENT_IS_CHECKED"],
+							"AUTO_SAVE" => "N",
+							"IS_LOADED" => $arParams["USER_CONSENT_IS_LOADED"],
+							"REPLACE" => array(
+								"button_caption" => Loc::getMessage("FORMS_SLIDE_PANEL_SUBMIT"),
+								"fields" => $fields
+							)
+						),
+						$component
+					);?>
+					<?unset($fields);?>
 				</div>
 			</div>
 		<?}
