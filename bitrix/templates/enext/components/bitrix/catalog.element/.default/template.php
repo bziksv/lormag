@@ -348,15 +348,20 @@ $arParams["MESS_RELATIVE_QUANTITY_FEW"] = $arParams["MESS_RELATIVE_QUANTITY_FEW"
 					<div class="col-xs-12 col-md-5 product-item-detail-blocks">
 						<?//ARTICLE//
 						if($haveOffers && ($arParams["OFFERS_VIEW"] == "PROPS" || $arParams["OFFERS_VIEW"] == "DROPDOWN_LIST")) {
-							$article = !empty($actualItem["PROPERTIES"]["ARTNUMBER"]["VALUE"]) ? $actualItem["PROPERTIES"]["ARTNUMBER"]["VALUE"] : false;?>
+							$article = !empty($actualItem["PROPERTIES"]["ARTNUMBER"]["VALUE"])
+								? $actualItem["PROPERTIES"]["ARTNUMBER"]["VALUE"]
+								: (!empty($actualItem["PROPERTIES"]["CML2_ARTICLE"]["VALUE"]) ? $actualItem["PROPERTIES"]["CML2_ARTICLE"]["VALUE"] : false);?>
 							<div class="product-item-detail-article" id="<?=$itemIds['ARTICLE_ID']?>"<?=($article ? '' : ' style="display:none;"')?>>
 								<?=Loc::getMessage("CT_BCE_CATALOG_ARTICLE")?>
 								<span data-entity="article-value"><?=($article ? $article : '')?></span>
 							</div>
-						<?} elseif(!empty($arResult["PROPERTIES"]["ARTNUMBER"]["VALUE"])) {?>
+						<?} elseif(!empty($arResult["PROPERTIES"]["ARTNUMBER"]["VALUE"]) || !empty($arResult["PROPERTIES"]["CML2_ARTICLE"]["VALUE"])) {
+							$article = !empty($arResult["PROPERTIES"]["ARTNUMBER"]["VALUE"])
+								? $arResult["PROPERTIES"]["ARTNUMBER"]["VALUE"]
+								: $arResult["PROPERTIES"]["CML2_ARTICLE"]["VALUE"];?>
 							<div class="product-item-detail-article">
 								<?=Loc::getMessage("CT_BCE_CATALOG_ARTICLE")?>
-								<span><?=$arResult["PROPERTIES"]["ARTNUMBER"]["VALUE"]?></span>
+								<span><?=$article?></span>
 							</div>
 						<?}
 						//RATING//
@@ -1487,7 +1492,7 @@ $arParams["MESS_RELATIVE_QUANTITY_FEW"] = $arParams["MESS_RELATIVE_QUANTITY_FEW"
 							<?}
 							//ASK_PRICE//
 							if($arParams["ASK_PRICE"]) {?>
-								<button type="button" class="btn btn-default" id="<?=$itemIds['ASK_PRICE_LINK']?>" <?=($actualItem['CAN_BUY'] && $price['PRICE'] <= 0 ? '' : 'style="display: none;">')?>><i class="icon-comment"></i><span><?=Loc::getMessage("CT_BCE_CATALOG_ASK_PRICE")?></span></button>
+								<button type="button" class="btn btn-default" id="<?=$itemIds['ASK_PRICE_LINK']?>"<?=($actualItem['CAN_BUY'] && $price['PRICE'] <= 0 ? '' : ' style="display: none;"')?>><i class="icon-comment"></i><span><?=Loc::getMessage("CT_BCE_CATALOG_ASK_PRICE")?></span></button>
 							<?}
 							//UNDER_ORDER//
 							if($arParams["UNDER_ORDER"]) {?>

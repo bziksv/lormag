@@ -13,7 +13,32 @@ if($request->isAjaxRequest()) {
 
 <div id="bx_catalog_compare_block" class="compare-container">
 	<?if($isAjax)
-		$APPLICATION->RestartBuffer();?>
+		$APPLICATION->RestartBuffer();
+
+	$compareItemName = function($arElement) {
+		return !empty($arElement["OFFER_FIELDS"]["NAME"])
+			? $arElement["OFFER_FIELDS"]["NAME"]
+			: (!empty($arElement["FIELDS"]["NAME"]) ? $arElement["FIELDS"]["NAME"] : $arElement["NAME"]);
+	};
+
+	if(!empty($arResult["COMPARE_SECTIONS"]) && count($arResult["COMPARE_SECTIONS"]) > 1) {
+		$sectionVar = $arParams["SECTION_ID_VARIABLE"];?>
+		<nav class="compare-sections" aria-label="compare-sections">
+			<?foreach($arResult["COMPARE_SECTIONS"] as $arSection) {
+				$sectionUrl = $APPLICATION->GetCurPageParam(
+					$sectionVar."=".$arSection["ID"],
+					array($sectionVar)
+				);
+				$isActive = intval($arResult["COMPARE_SECTION_ID"]) === intval($arSection["ID"]);?>
+				<a class="compare-sections__item<?=($isActive ? " is-active" : "")?>" href="<?=htmlspecialcharsbx($sectionUrl)?>"<?=($isActive ? ' aria-current="page"' : "")?>>
+					<span class="compare-sections__name"><?=htmlspecialcharsbx($arSection["NAME"])?></span>
+					<span class="compare-sections__count"><?=intval($arSection["COUNT"])?></span>
+				</a>
+			<?}
+			unset($arSection, $sectionUrl, $isActive);?>
+		</nav>
+	<?}?>
+	<div class="compare-body">
 	<div class="compare-left scrollbar-inner">
 		<div class="compare">
 			<div class="compare-row compare-row-thead">
@@ -24,20 +49,21 @@ if($request->isAjaxRequest()) {
 						<span class="compare-different-title" data-entity="compare-title"><?=Loc::getMessage("CATALOG_ONLY_DIFFERENT")?></span>
 					</label>
 				</div>
-				<?foreach($arResult["ITEMS"] as $arElement) {?>
+				<?foreach($arResult["ITEMS"] as $arElement) {
+					$itemName = $compareItemName($arElement);?>
 					<div class="compare-col vertical-align-top">
 						<div class="compare-item-item">
-							<a class="compare-item-caption" href="<?=$arElement['DETAIL_PAGE_URL']?>">
+							<a class="compare-item-caption" href="<?=$arElement['DETAIL_PAGE_URL']?>" title="<?=htmlspecialcharsbx($itemName)?>">
 								<span class="compare-item-image">
 									<?if(is_array($arElement["OFFER_FIELDS"]["PREVIEW_PICTURE"])) {?>
 										<img src="<?=$arElement['OFFER_FIELDS']['PREVIEW_PICTURE']['SRC']?>" width="<?=$arElement['OFFER_FIELDS']['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arElement['OFFER_FIELDS']['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$arElement['OFFER_FIELDS']['PREVIEW_PICTURE']['ALT']?>" title="<?=$arElement['OFFER_FIELDS']['PREVIEW_PICTURE']['TITLE']?>" />
 									<?} elseif(is_array($arElement["FIELDS"]["PREVIEW_PICTURE"])) {?>
 										<img src="<?=$arElement['FIELDS']['PREVIEW_PICTURE']['SRC']?>" width="<?=$arElement['FIELDS']['PREVIEW_PICTURE']['WIDTH']?>" height="<?=$arElement['FIELDS']['PREVIEW_PICTURE']['HEIGHT']?>" alt="<?=$arElement['FIELDS']['PREVIEW_PICTURE']['ALT']?>" title="<?=$arElement['FIELDS']['PREVIEW_PICTURE']['TITLE']?>" />
 									<?} else {?>
-										<img src="<?=SITE_TEMPLATE_PATH?>/images/no_photo.png" width="50" height="50" alt="<?=$arElement['NAME']?>" title="<?=$arElement['NAME']?>" />
+										<img src="<?=SITE_TEMPLATE_PATH?>/images/no_photo.png" width="50" height="50" alt="<?=htmlspecialcharsbx($itemName)?>" title="<?=htmlspecialcharsbx($itemName)?>" />
 									<?}?>
 								</span>
-								<span class="compare-item-name"><?=(!empty($arElement["OFFER_FIELDS"]["NAME"]) ? $arElement["OFFER_FIELDS"]["NAME"] : (!empty($arElement["FIELDS"]["NAME"]) ? $arElement["FIELDS"]["NAME"] : $arElement["NAME"]))?></span>
+								<span class="compare-item-name"><?=$itemName?></span>
 							</a>
 							<div class="compare-item-delete" title="<?=Loc::getMessage('CATALOG_DELETE')?>" data-entity="deleteItem" data-id="<?=$arElement['ID']?>"><i class="icon-close"></i></div>
 						</div>
@@ -182,7 +208,21 @@ if($request->isAjaxRequest()) {
 				<?foreach($arResult["ITEMS"] as $arElement) {?>
 					<div class="compare-col vertical-align-top">
 						<div class="compare-item-article">
-							<?=Loc::getMessage("CATALOG_ARTICLE").(!empty($arElement["OFFER_PROPERTIES"]["ARTNUMBER"]["VALUE"]) ? $arElement["OFFER_PROPERTIES"]["ARTNUMBER"]["VALUE"] : (!empty($arElement["PROPERTIES"]["ARTNUMBER"]["VALUE"]) ? $arElement["PROPERTIES"]["ARTNUMBER"]["VALUE"] : "-"));?>
+							<?
+							$compareArticle = "";
+							foreach(array("ARTNUMBER", "CML2_ARTICLE", "ARTICLS") as $articleCode) {
+								if(!empty($arElement["OFFER_PROPERTIES"][$articleCode]["VALUE"])) {
+									$compareArticle = $arElement["OFFER_PROPERTIES"][$articleCode]["VALUE"];
+									break;
+								}
+								if(!empty($arElement["PROPERTIES"][$articleCode]["VALUE"])) {
+									$compareArticle = $arElement["PROPERTIES"][$articleCode]["VALUE"];
+									break;
+								}
+							}
+							unset($articleCode);
+							?>
+							<?=Loc::getMessage("CATALOG_ARTICLE").($compareArticle !== "" ? $compareArticle : "-");?>
 						</div>
 						<?if(isset($arElement["REVIEWS_COUNT"])) {?>
 							<div class="compare-item-rating">
@@ -222,6 +262,7 @@ if($request->isAjaxRequest()) {
 				unset($arElement);?>
 			</div>
 		</div>
+	</div>
 	</div>
 	<div class="visible-xs visible-sm compare-different-mobile">
 		<label class="compare-different">

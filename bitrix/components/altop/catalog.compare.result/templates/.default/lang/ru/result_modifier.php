@@ -1,0 +1,2 @@
+<?
+$MESS["CATALOG_COMPARE_SECTION_OTHER"] = "Без раздела";

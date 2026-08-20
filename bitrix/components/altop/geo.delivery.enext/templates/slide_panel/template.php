@@ -85,7 +85,7 @@ $containerName = "slide-panel-geo-delivery-".$obName;?>
 						<?}?>
 					</div>
 					<div class="slide-panel-geo-delivery-item-col">
-						<div class="slide-panel-geo-delivery-item-price"><?=$arDeliveryItem["PRICE_FORMATED"]?></div>
+						<div class="slide-panel-geo-delivery-item-price"><?=Loc::getMessage("GEO_DELIVERY_SLIDE_PANEL_PRICE_FROM")?><?=$arDeliveryItem["PRICE_FORMATED"]?></div>
 					</div>
 					<?if(!empty($arDeliveryItem["DESCRIPTION"])) {?>
 						<div class="slide-panel-geo-delivery-item-col slide-panel-geo-delivery-item-col-descr"><?=$arDeliveryItem["DESCRIPTION"]?></div>

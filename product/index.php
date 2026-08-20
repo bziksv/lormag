@@ -1,15 +1,18 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$CurPage = $APPLICATION->GetCurDir();
-$APPLICATION->SetTitle("catalog");
 
 $set404 = 'Y';
 $propCODE = '';
 
-
-//global $APPLICATION;
 $pageD = $APPLICATION->GetCurPage();
 $arPageD = explode('/',$pageD);
+
+// /product/ without product code is a broken catalog root — send to real catalog
+if(empty($arPageD[2])) {
+	LocalRedirect("/catalog/", true, "301 Moved Permanently");
+}
+
+$CurPage = $APPLICATION->GetCurDir();
 
 if($arPageD[2]){
 	$arSelect = Array("CODE","PROPERTY_code");

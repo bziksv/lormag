@@ -8,6 +8,11 @@
 	position: relative;
 }
 
+/* Keep absolute .compare-right aligned with .compare-left when section tabs are above */
+.compare-body{
+	position: relative;
+}
+
 .compare-left{
 	overflow: hidden;
 }
@@ -106,6 +111,13 @@
 
 .compare-col-title{
 	font-size: 12px;
+}
+
+.compare-col-val{
+	overflow-wrap: anywhere;
+	word-break: break-word;
+	max-height: 9.5em;
+	overflow: hidden;
 }
 
 /***DIFFERENT***/
@@ -215,10 +227,67 @@
 	font-size: 14px;
 	color: #78909c;
 	line-height: 17px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	max-height: 34px;
 	-webkit-transition: all 0.15s ease 0s;
 	-moz-transition: all 0.15s ease 0s;
 	-o-transition: all 0.15s ease 0s;
 	transition: all 0.15s ease 0s;
+}
+
+/***SECTIONS***/
+.compare-sections{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 0 24px 16px;
+	padding-top: 8px;
+}
+
+.compare-sections__item{
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	max-width: 100%;
+	padding: 8px 12px;
+	font-size: 13px;
+	line-height: 16px;
+	color: #78909c;
+	text-decoration: none;
+	border: 1px solid #e3ecef;
+	border-radius: 4px;
+	background: #fff;
+	-webkit-transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+	-moz-transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+	-o-transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+	transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.compare-sections__item:hover,
+.compare-sections__item:focus{
+	color: #263238;
+	border-color: #b2c7cb;
+	text-decoration: none;
+}
+
+.compare-sections__item.is-active{
+	color: #fff;
+	border-color: #6639b6;
+	background: #6639b6;
+}
+
+.compare-sections__name{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.compare-sections__count{
+	flex-shrink: 0;
+	opacity: 0.75;
 }
 
 .bx-no-touch .compare-item-caption:hover .compare-item-name,
@@ -487,6 +556,12 @@
 	.compare-item-name{
 		margin-left: 0;
 		margin-top: 6px;
+		-webkit-line-clamp: 3;
+		max-height: 51px;
+	}
+
+	.compare-sections{
+		margin: 0 18px 12px;
 	}
 
 	/***DELETE***/

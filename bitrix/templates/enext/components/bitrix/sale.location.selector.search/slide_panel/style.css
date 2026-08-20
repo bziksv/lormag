@@ -7,6 +7,10 @@
 
 /***REGION***/
 .slide-panel-bx-sls .dropdown-block{
+	display: block;
+	width: 100%;
+	min-height: 36px;
+	box-sizing: border-box;
 	padding: 0 30px;
 	position: relative;
 	border: 1px solid #ced9db;
@@ -30,6 +34,7 @@
 	position: absolute;
 	left: 0;
 	top: 0;
+	z-index: 2;
 }
 
 .slide-panel-bx-sls .dropdown-icon > i{
@@ -45,6 +50,7 @@
 	right: 0;
 	top: 0;
 	background: url("/bitrix/panel/main/images/waiter-white.gif") center no-repeat;
+	z-index: 2;
 }
 
 .slide-panel-bx-sls .bx-ui-sls-clear{
@@ -57,6 +63,7 @@
 	text-align: center;
 	line-height: 34px;
 	cursor: pointer;
+	z-index: 2;
 }
 
 .slide-panel-bx-sls .bx-ui-sls-clear > i{
@@ -70,34 +77,64 @@
 
 .bx-no-touch .slide-panel-bx-sls .bx-ui-sls-clear:hover > i,
 .bx-touch .slide-panel-bx-sls .bx-ui-sls-clear:active > i{
-	color: #6639b6;
+	color: #349933;
 }
 
 .slide-panel-bx-sls .bx-ui-sls-container{
+	display: block;
+	width: 100%;
 	height: 34px;
+	min-height: 34px;
 	overflow: hidden;
+	position: relative;
 }
 
+.slide-panel-bx-sls .dropdown-field,
 .slide-panel-bx-sls .bx-ui-sls-fake,
 .slide-panel-bx-sls .bx-ui-sls-route{
 	width: 100%;
 	height: 34px;
+	max-width: 100%;
+	box-sizing: border-box;
 	padding: 0 !important;
-	position: absolute;	
-	left: 0;
-	top: 0;
+	margin: 0 !important;
 	font-family: "Museo Sans Cyrl 300", sans-serif;
 	font-size: 16px;	
 	color: #263238;
-	line-height: 19px;
+	line-height: 34px;
 	border: none !important;
-	background: transparent;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+	background: transparent !important;
+	outline: none;
+}
+
+.slide-panel-bx-sls .bx-ui-sls-fake,
+.slide-panel-bx-sls .bx-ui-sls-route{
+	position: absolute;
+	left: 0;
+	top: 0;
 	z-index: 10;
 }
 
 .slide-panel-bx-sls .bx-ui-sls-route{
 	color: #78909c !important;
 	z-index: 5;
+}
+
+/* Origin LOCATION input must stay hidden once autocomplete creates the fake field */
+.slide-panel-bx-sls .dropdown-block:has(.bx-ui-sls-container) > input.dropdown-field{
+	position: absolute !important;
+	left: -9999px !important;
+	top: 0 !important;
+	width: 1px !important;
+	height: 1px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+	border: 0 !important;
 }
 
 /***QUICK_LOCATIONS***/
@@ -134,8 +171,8 @@
 .bx-no-touch .quick-location-tag.selected:hover,
 .bx-touch .quick-location-tag.selected:active{
 	color: #263238;
-	border-color: #6639b6;
-	background: rgba(102, 57, 182, 0.16);
+	border-color: #349933;
+	background: rgba(52, 153, 51, 0.16);
 }
 
 /***BTN***/

@@ -167,6 +167,23 @@ if(typeof BX.Sale.component.location.selector.searchSlidePanel == 'undefined' &&
 
 			sc.inputBlock = this.getControl('input-block');
 			sc.loader = this.getControl('loader');
+
+			// Keep origin value-input out of layout (BX.hide alone can fail in slide panel)
+			if(sc.inputs && BX.type.isElementNode(sc.inputs.origin)) {
+				BX.hide(sc.inputs.origin);
+				sc.inputs.origin.setAttribute('aria-hidden', 'true');
+				sc.inputs.origin.tabIndex = -1;
+				BX.adjust(sc.inputs.origin, {
+					style: {
+						position: 'absolute',
+						left: '-9999px',
+						width: '1px',
+						height: '1px',
+						opacity: '0',
+						pointerEvents: 'none'
+					}
+				});
+			}
 		},
 
 		bindEvents: function() {

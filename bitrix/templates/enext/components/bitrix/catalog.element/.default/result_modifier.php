@@ -1084,6 +1084,14 @@ if(!empty($arResult["DISPLAY_PROPERTIES"])) {
 		} else {
 			$property["DISPLAY_VALUE"] = is_array($property["DISPLAY_VALUE"]) ? implode(" / ", $property["DISPLAY_VALUE"]) : strip_tags($property["DISPLAY_VALUE"]);
 		}
+
+		// Repair truncated HTML tags in property values (e.g. "</ul" without ">")
+		if(is_string($property["DISPLAY_VALUE"]) && $property["DISPLAY_VALUE"] !== "") {
+			$property["DISPLAY_VALUE"] = preg_replace('/<\/([a-zA-Z][a-zA-Z0-9]*)(?=[\s<]|$)/', '</$1>', $property["DISPLAY_VALUE"]);
+		}
+		if(is_string($property["VALUE"]) && $property["VALUE"] !== "" && $property["VALUE"] !== $property["DISPLAY_VALUE"]) {
+			$property["VALUE"] = preg_replace('/<\/([a-zA-Z][a-zA-Z0-9]*)(?=[\s<]|$)/', '</$1>', $property["VALUE"]);
+		}
 	}
 	unset($property);
 

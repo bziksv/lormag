@@ -18,7 +18,15 @@ foreach($arResult["BASKET"] as $key => $arBasketItem) {
 	$obProductArticle = CIBlockElement::GetProperty($productIblockId["IBLOCK_ID"], $arBasketItem["PRODUCT_ID"], array(), array("CODE" => "ARTNUMBER"));
 	if($arProductArticle = $obProductArticle->Fetch())
 		$arResult["BASKET"][$key]["ARTNUMBER"] = $arProductArticle["VALUE"];
-	unset($arProductArticle, $obProductArticle, $productIblockId);
+	unset($arProductArticle, $obProductArticle);
+
+	if(empty($arResult["BASKET"][$key]["ARTNUMBER"])) {
+		$obProductArticle = CIBlockElement::GetProperty($productIblockId["IBLOCK_ID"], $arBasketItem["PRODUCT_ID"], array(), array("CODE" => "CML2_ARTICLE"));
+		if($arProductArticle = $obProductArticle->Fetch())
+			$arResult["BASKET"][$key]["ARTNUMBER"] = $arProductArticle["VALUE"];
+		unset($arProductArticle, $obProductArticle);
+	}
+	unset($productIblockId);
 }
 unset($key, $arBasketItem);
 
