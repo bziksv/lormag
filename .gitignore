@@ -26,6 +26,7 @@ upload/tmp/
 
 # --- Пользовательские файлы / медиа ---
 upload/
+!upload/lormag_*.png
 
 # --- Логи ---
 *.log
@@ -45,7 +46,7 @@ sitemap*.xml
 bitrix/modules/*.tar.gz
 bitrix/modules/*.zip
 
-# --- IDE / OS ---
+node_modules/
 .idea/
 .vscode/
 .DS_Store

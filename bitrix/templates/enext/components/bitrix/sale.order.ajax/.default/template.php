@@ -437,17 +437,25 @@ $this->addExternalJs($templateFolder.'/script.min.js');?>
 				<?}
 				//ORDER_SAVE_BLOCK//?>
 				<div id="bx-soa-orderSave" class="bx-soa-order-save">
-
-
-					<div style="display: flex;">
-<label>
-  <input type="checkbox" required>
-	<span>Нажимая на эту кнопку, я даю свое согласие на обработку персональных данных и соглашаюсь с условиями <a target="_blank" href="/upload/politics-lormag.png">политики обработки персональных данных</a>.</span>
-</label>
-</div>
-
-
-
+					<?if($arParams['USER_CONSENT'] === 'Y') {?>
+						<div class="form-group form-group-checkbox">
+							<div class="checkbox">
+								<?$APPLICATION->IncludeComponent('bitrix:main.userconsent.request', '',
+									array(
+										'ID' => $arParams['USER_CONSENT_ID'],
+										'IS_CHECKED' => 'N',
+										'IS_LOADED' => $arParams['USER_CONSENT_IS_LOADED'],
+										'AUTO_SAVE' => 'N',
+										'SUBMIT_EVENT_NAME' => 'bx-soa-order-save',
+										'REPLACE' => array(
+											'button_caption' => $arParams['~MESS_ORDER'] ?? $arParams['MESS_ORDER'],
+											'fields' => $arResult['USER_CONSENT_PROPERTY_DATA']
+										)
+									)
+								);?>
+							</div>
+						</div>
+					<?}?>
 					<a href="javascript:void(0)" class="hidden-xs hidden-sm btn btn-buy pull-right" data-save-button="true" role="button"><span><?=$arParams['MESS_ORDER']?></span></a>
 				</div>
 				<div style="display: none;">

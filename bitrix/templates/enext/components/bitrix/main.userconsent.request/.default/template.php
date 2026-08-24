@@ -3,9 +3,9 @@
 $config = \Bitrix\Main\Web\Json::encode($arResult['CONFIG']);?>
 
 <label data-bx-user-consent="<?=htmlspecialcharsbx($config)?>" class="main-user-consent-request">
-	<input type="checkbox" value="Y"<?=($arParams['IS_CHECKED'] ? ' checked' : '')?> name="<?=htmlspecialcharsbx($arParams['INPUT_NAME'])?>" />
+	<input type="checkbox" value="Y" name="<?=htmlspecialcharsbx($arParams['INPUT_NAME'])?>" />
 	<span class="check-cont"><span class="check"><i class="icon-ok-b"></i></span></span>
-	<a class="check-title" href="/upload/politics-lormag.png" target="_blank" rel="noopener"><?=htmlspecialcharsbx($arResult['INPUT_LABEL'])?></a>
+	<span class="check-title">Я <a href="/pages/lormag_soglasie_obrabotki_pd/" target="_blank" rel="noopener">даю согласие на обработку моих персональных данных</a> и соглашаюсь с <a href="/pages/lormag_politika_obrabotki_pd/" target="_blank" rel="noopener">политикой обработки персональных данных</a>.</span>
 </label>
 
 <script type="text/html" data-bx-template="main-user-consent-request-loader">
@@ -123,7 +123,7 @@ $config = \Bitrix\Main\Web\Json::encode($arResult['CONFIG']);?>
 			}
 		},		
 		onClick: function(item, e) {
-			var link = e.target && e.target.closest ? e.target.closest('a.check-title[href]') : null;
+			var link = e.target && e.target.closest ? e.target.closest('.check-title a[href]') : null;
 			if (link) {
 				// Текст согласия ведёт на политику — не открываем попап Bitrix
 				return;

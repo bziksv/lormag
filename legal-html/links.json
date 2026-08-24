@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-08-24T12:05:47.053Z",
+  "documents": [
+    {
+      "key": "personal_data",
+      "title": "Политика обработки персональных данных",
+      "pageUrl": "https://lormag.ru/pages/lormag_politika_obrabotki_pd/",
+      "imageUrl": "https://lormag.ru/upload/lormag_politika_obrabotki_pd.png",
+      "localImage": "/Users/stanislav/Documents/projects/lormag/lormag.ru/upload/lormag_politika_obrabotki_pd.png"
+    },
+    {
+      "key": "consent",
+      "title": "Согласие на обработку персональных данных",
+      "pageUrl": "https://lormag.ru/pages/lormag_soglasie_obrabotki_pd/",
+      "imageUrl": "https://lormag.ru/upload/lormag_soglasie_obrabotki_pd.png",
+      "localImage": "/Users/stanislav/Documents/projects/lormag/lormag.ru/upload/lormag_soglasie_obrabotki_pd.png"
+    },
+    {
+      "key": "cookie",
+      "title": "Политика использования cookie-файлов",
+      "pageUrl": "https://lormag.ru/pages/lormag_politika_cookie/",
+      "imageUrl": "https://lormag.ru/upload/lormag_politika_cookie.png",
+      "localImage": "/Users/stanislav/Documents/projects/lormag/lormag.ru/upload/lormag_politika_cookie.png"
+    },
+    {
+      "key": "recommendation",
+      "title": "Правила применения рекомендательных технологий",
+      "pageUrl": "https://lormag.ru/pages/lormag_pravila_rekomendatelnyh_tehnologiy/",
+      "imageUrl": "https://lormag.ru/upload/lormag_pravila_rekomendatelnyh_tehnologiy.png",
+      "localImage": "/Users/stanislav/Documents/projects/lormag/lormag.ru/upload/lormag_pravila_rekomendatelnyh_tehnologiy.png"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "key": "personal_data",
+    "title": "Политика обработки персональных данных",
+    "html": "legal-personal-data.html",
+    "png": "lormag_politika_obrabotki_pd.png",
+    "pageUrl": "/pages/lormag_politika_obrabotki_pd/"
+  },
+  {
+    "key": "consent",
+    "title": "Согласие на обработку персональных данных",
+    "html": "legal-consent.html",
+    "png": "lormag_soglasie_obrabotki_pd.png",
+    "pageUrl": "/pages/lormag_soglasie_obrabotki_pd/"
+  },
+  {
+    "key": "cookie",
+    "title": "Политика использования cookie-файлов",
+    "html": "legal-cookie.html",
+    "png": "lormag_politika_cookie.png",
+    "pageUrl": "/pages/lormag_politika_cookie/"
+  },
+  {
+    "key": "recommendation",
+    "title": "Правила применения рекомендательных технологий",
+    "html": "legal-recommendation.html",
+    "png": "lormag_pravila_rekomendatelnyh_tehnologiy.png",
+    "pageUrl": "/pages/lormag_pravila_rekomendatelnyh_tehnologiy/"
+  }
+]

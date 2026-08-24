@@ -18,7 +18,7 @@ $arParams["USE_CAPTCHA"] = !$USER->IsAuthorized() && $arSettings["FORMS_USE_CAPT
 
 $arParams["USER_CONSENT"] = $arSettings["FORMS_USER_CONSENT"] == "Y" ? true : false;
 $arParams["USER_CONSENT_ID"] = $arSettings["FORMS_USER_CONSENT_ID"];
-$arParams["USER_CONSENT_IS_CHECKED"] = $arSettings["FORMS_USER_CONSENT_IS_CHECKED"];
+$arParams["USER_CONSENT_IS_CHECKED"] = "N";
 $arParams["USER_CONSENT_IS_LOADED"] = $arSettings["FORMS_USER_CONSENT_IS_LOADED"];
 
 $arParams["DEFAULT_COUNTRY"] = strtolower($arSettings["FORMS_DEFAULT_COUNTRY"]);

@@ -80,16 +80,31 @@ $containerName = "slide-panel-form-".$obName;?>
 			if($arParams["USER_CONSENT"]) {?>
 				<input type="hidden" name="USER_CONSENT_ID" value="<?=$arParams['USER_CONSENT_ID']?>" />
 				<input type="hidden" name="USER_CONSENT_URL" value="" />
-
-
-<div>
-	<label style="color: #66797f; font-size: 14px; padding-left: 12px;">
-  <input type="checkbox" required>
-				<span>Нажимая на эту кнопку, я даю свое согласие на обработку персональных данных и соглашаюсь с условиями <a target="_blank" href="/upload/politics-lormag.png">политики обработки персональных данных</a>.</span>
-</label>
+				<div class="form-group form-group-checkbox">
+					<div class="checkbox">
+						<?$fields = array();
+						foreach($arResult["IBLOCK"]["PROPERTIES"] as $arProp) {
+							if($arProp["PROPERTY_TYPE"] == "S" && $arProp["USER_TYPE"] != "UserID" && $arProp["CODE"] != "CITY")
+								$fields[] = $arProp["NAME"];
+						}
+						unset($arProp);?>
+						<?$APPLICATION->IncludeComponent("bitrix:main.userconsent.request", "",
+							array(
+								"ID" => $arParams["USER_CONSENT_ID"],
+								"INPUT_NAME" => "USER_CONSENT",
+								"IS_CHECKED" => $arParams["USER_CONSENT_IS_CHECKED"],
+								"AUTO_SAVE" => "N",
+								"IS_LOADED" => $arParams["USER_CONSENT_IS_LOADED"],
+								"REPLACE" => array(
+									"button_caption" => Loc::getMessage("ADD_REVIEW_SLIDE_PANEL_SUBMIT"),
+									"fields" => $fields
+								)
+							),
+							$component
+						);?>
+						<?unset($fields);?>
+					</div>
 				</div>
-
-
 			<?}
 			if($arParams["USE_CAPTCHA"]) {?>
 				<div class="form-group captcha">

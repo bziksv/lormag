@@ -1,0 +1,11 @@
+{
+  "name": "lormag-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "legal:images": "node scripts/generate-legal-images.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

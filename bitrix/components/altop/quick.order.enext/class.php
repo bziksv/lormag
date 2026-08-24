@@ -45,7 +45,7 @@ class QuickOrder extends CBitrixComponent {
 		
 		$params["USER_CONSENT"] = $arSettings["FORMS_USER_CONSENT"] == "Y" ? true : false;
 		$params["USER_CONSENT_ID"] = $arSettings["FORMS_USER_CONSENT_ID"];
-		$params["USER_CONSENT_IS_CHECKED"] = $arSettings["FORMS_USER_CONSENT_IS_CHECKED"];
+		$params["USER_CONSENT_IS_CHECKED"] = "N";
 		$params["USER_CONSENT_IS_LOADED"] = $arSettings["FORMS_USER_CONSENT_IS_LOADED"];
 		
 		$params["DEFAULT_COUNTRY"] = strtolower($arSettings["FORMS_DEFAULT_COUNTRY"]);

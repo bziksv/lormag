@@ -188,7 +188,7 @@ if($arResult["SHOW_SMS_FIELD"] == true)
 									<?$APPLICATION->IncludeComponent("bitrix:main.userconsent.request", "",
 										array(
 											"ID" => $arSettings["FORMS_USER_CONSENT_ID"]["VALUE"],
-											"IS_CHECKED" => $arSettings["FORMS_USER_CONSENT_IS_CHECKED"]["VALUE"],
+											"IS_CHECKED" => "N",
 											"AUTO_SAVE" => "N",
 											"IS_LOADED" => $arSettings["FORMS_USER_CONSENT_IS_LOADED"]["VALUE"],
 											"ORIGINATOR_ID" => $arResult["AGREEMENT_ORIGINATOR_ID"],
