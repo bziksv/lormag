@@ -1586,16 +1586,30 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		//Order saving action with validation. Doesn't send request while have errors
 		clickOrderSaveAction: function(event) {
-			if(this.isValidForm()) {
-				this.allowOrderSave();
-				
-				if(this.params.USER_CONSENT === 'Y' && BX.UserConsent) {
-					BX.onCustomEvent('bx-soa-order-save', []);
-				} else {
-					this.doSaveAction();
+			if(!this.isValidForm()) {
+				return BX.PreventDefault(event);
+			}
+
+			if(this.params.USER_CONSENT === 'Y' && BX.UserConsent) {
+				if(!this.userConsentControl) {
+					this.userConsentControl = BX.UserConsent.load(this.orderBlockNode);
+				}
+
+				if(this.userConsentControl && !this.userConsentControl.inputNode.checked) {
+					this.disallowOrderSave();
+					BX.UserConsent.check(this.userConsentControl);
+					return BX.PreventDefault(event);
 				}
 			}
-			
+
+			this.allowOrderSave();
+
+			if(this.params.USER_CONSENT === 'Y' && BX.UserConsent) {
+				BX.onCustomEvent('bx-soa-order-save', []);
+			} else {
+				this.doSaveAction();
+			}
+
 			return BX.PreventDefault(event);
 		},
 
@@ -7531,10 +7545,15 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		initUserConsent: function() {
 			BX.ready(BX.delegate(function() {
-				var control = BX.UserConsent && BX.UserConsent.load(this.orderBlockNode);
-				if(control) {
-					BX.addCustomEvent(control, BX.UserConsent.events.save, BX.proxy(this.doSaveAction, this));
-					BX.addCustomEvent(control, BX.UserConsent.events.refused, BX.proxy(this.disallowOrderSave, this));
+				this.userConsentControl = BX.UserConsent && BX.UserConsent.load(this.orderBlockNode);
+				if(this.userConsentControl) {
+					BX.addCustomEvent(this.userConsentControl, BX.UserConsent.events.save, BX.proxy(this.doSaveAction, this));
+					BX.addCustomEvent(this.userConsentControl, BX.UserConsent.events.refused, BX.proxy(this.disallowOrderSave, this));
+					BX.bind(this.userConsentControl.inputNode, 'change', BX.proxy(function() {
+						if(BX.UserConsent.clearConsentError) {
+							BX.UserConsent.clearConsentError(this.userConsentControl);
+						}
+					}, this));
 				}
 			}, this));
 		}

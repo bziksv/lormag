@@ -130,9 +130,16 @@ $config = \Bitrix\Main\Web\Json::encode($arResult['CONFIG']);?>
 			}
 			// Чекбокс только ставит галочку; попап с текстом соглашения не показываем
 			if (e.target === item.inputNode || (e.target && e.target.closest && e.target.closest('input[type="checkbox"]'))) {
+				if(item.inputNode.checked) {
+					this.clearConsentError(item);
+				}
+				BX.onCustomEvent(item.formNode, 'OnFormInputUserConsentChange');
 				return;
 			}
 			item.inputNode.checked = !item.inputNode.checked;
+			if(item.inputNode.checked) {
+				this.clearConsentError(item);
+			}
 			BX.onCustomEvent(item.formNode, 'OnFormInputUserConsentChange');
 			e.preventDefault();
 		},
@@ -147,13 +154,56 @@ $config = \Bitrix\Main\Web\Json::encode($arResult['CONFIG']);?>
 				return false;
 			}
 		},
+		consentErrorMessage: 'Необходимо дать согласие на обработку персональных данных',
+		showConsentError: function(item) {
+			var row = item.controlNode.closest('.form-group') || item.controlNode.parentNode;
+			if(!row) {
+				return;
+			}
+
+			BX.addClass(row, 'has-error');
+			BX.addClass(item.controlNode, 'main-user-consent-request-error');
+
+			var msgNode = row.querySelector('.main-user-consent-request-error-msg');
+			if(!msgNode) {
+				msgNode = BX.create('DIV', {
+					props: {className: 'alert alert-error main-user-consent-request-error-msg'},
+					style: {marginTop: '8px', marginBottom: '0'},
+					html: this.consentErrorMessage
+				});
+				row.appendChild(msgNode);
+			} else {
+				msgNode.style.display = '';
+			}
+
+			if(typeof item.controlNode.scrollIntoView === 'function') {
+				item.controlNode.scrollIntoView({behavior: 'smooth', block: 'center'});
+			}
+		},
+		clearConsentError: function(item) {
+			if(!item || !item.controlNode) {
+				return;
+			}
+
+			var row = item.controlNode.closest('.form-group') || item.controlNode.parentNode;
+			if(row) {
+				BX.removeClass(row, 'has-error');
+				var msgNode = row.querySelector('.main-user-consent-request-error-msg');
+				if(msgNode) {
+					msgNode.style.display = 'none';
+				}
+			}
+
+			BX.removeClass(item.controlNode, 'main-user-consent-request-error');
+		},
 		check: function(item) {
 			if(item.inputNode.checked) {
+				this.clearConsentError(item);
 				this.saveConsent(item);
 				return true;
 			}
 
-			// Без попапа: просто блокируем отправку, пока не отмечен чекбокс
+			this.showConsentError(item);
 			item.inputNode.focus();
 			return false;
 		},
