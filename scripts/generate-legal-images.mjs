@@ -49,7 +49,7 @@ const links = {
   documents: documents.map((doc) => ({
     key: doc.key,
     title: doc.title,
-    pageUrl: `${publicBase}${doc.pageUrl}`,
+    pageUrl: `${publicBase}${doc.imageUrl}`,
     imageUrl: `${publicBase}/upload/${doc.png}`,
     localImage: path.join(uploadDir, doc.png),
   })),

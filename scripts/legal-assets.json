@@ -4,27 +4,27 @@
     "title": "Политика обработки персональных данных",
     "html": "legal-personal-data.html",
     "png": "lormag_politika_obrabotki_pd.png",
-    "pageUrl": "/pages/lormag_politika_obrabotki_pd/"
+    "imageUrl": "/upload/lormag_politika_obrabotki_pd.png"
   },
   {
     "key": "consent",
     "title": "Согласие на обработку персональных данных",
     "html": "legal-consent.html",
     "png": "lormag_soglasie_obrabotki_pd.png",
-    "pageUrl": "/pages/lormag_soglasie_obrabotki_pd/"
+    "imageUrl": "/upload/lormag_soglasie_obrabotki_pd.png"
   },
   {
     "key": "cookie",
     "title": "Политика использования cookie-файлов",
     "html": "legal-cookie.html",
     "png": "lormag_politika_cookie.png",
-    "pageUrl": "/pages/lormag_politika_cookie/"
+    "imageUrl": "/upload/lormag_politika_cookie.png"
   },
   {
     "key": "recommendation",
     "title": "Правила применения рекомендательных технологий",
     "html": "legal-recommendation.html",
     "png": "lormag_pravila_rekomendatelnyh_tehnologiy.png",
-    "pageUrl": "/pages/lormag_pravila_rekomendatelnyh_tehnologiy/"
+    "imageUrl": "/upload/lormag_pravila_rekomendatelnyh_tehnologiy.png"
   }
 ]
