@@ -1,11 +1,13 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
-$config = \Bitrix\Main\Web\Json::encode($arResult['CONFIG']);?>
+$config = \Bitrix\Main\Web\Json::encode($arResult['CONFIG']);
+$legal = include $_SERVER['DOCUMENT_ROOT'] . '/include/legal_config.php';
+?>
 
 <label data-bx-user-consent="<?=htmlspecialcharsbx($config)?>" class="main-user-consent-request">
 	<input type="checkbox" value="Y" name="<?=htmlspecialcharsbx($arParams['INPUT_NAME'])?>" />
 	<span class="check-cont"><span class="check"><i class="icon-ok-b"></i></span></span>
-	<span class="check-title">Я <a href="/pages/lormag_soglasie_obrabotki_pd/" target="_blank" rel="noopener">даю согласие на обработку моих персональных данных</a> и соглашаюсь с <a href="/pages/lormag_politika_obrabotki_pd/" target="_blank" rel="noopener">политикой обработки персональных данных</a>.</span>
+	<span class="check-title">Я <a href="<?=htmlspecialcharsbx($legal['images']['consent'])?>" target="_blank" rel="noopener">даю согласие на обработку моих персональных данных</a> и соглашаюсь с <a href="<?=htmlspecialcharsbx($legal['images']['personal_data'])?>" target="_blank" rel="noopener">политикой обработки персональных данных</a>.</span>
 </label>
 
 <script type="text/html" data-bx-template="main-user-consent-request-loader">

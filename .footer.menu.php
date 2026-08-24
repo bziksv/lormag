@@ -1,15 +1,16 @@
 <?
+$legal = include $_SERVER['DOCUMENT_ROOT'] . '/include/legal_config.php';
 $aMenuLinks = Array(
 	Array(
 		"Политика обработки персональных данных",
-		"/pages/lormag_politika_obrabotki_pd/",
+		$legal['images']['personal_data'],
 		Array(),
 		Array(),
 		""
 	),
 	Array(
 		"Согласие на обработку персональных данных",
-		"/pages/lormag_soglasie_obrabotki_pd/",
+		$legal['images']['consent'],
 		Array(),
 		Array(),
 		""
