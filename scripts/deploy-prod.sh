@@ -49,7 +49,7 @@ ssh "$HOST" "cd $PROD_PATH &&
     cp -a /tmp/lormag_dbconn.php.bak bitrix/php_interface/dbconn.php
   fi
   chown -R ${PROD_USER}:${PROD_USER} .
-  rm -rf bitrix/cache/* bitrix/managed_cache/* bitrix/stack_cache/* 2>/dev/null || true
+  rm -rf bitrix/cache/* bitrix/managed_cache/* bitrix/stack_cache/* bitrix/html_pages/* 2>/dev/null || true
   git log -1 --oneline
   echo cache_cleared
 "
