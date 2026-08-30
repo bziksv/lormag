@@ -17,9 +17,15 @@ $this->setFrameMode(true);?>
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
 		"FIELD_CODE" => $arParams["COMPARE_FIELD_CODE"],
-		"PROPERTY_CODE" => $arParams["COMPARE_PROPERTY_CODE"],
+		// Use DETAIL_PROPERTY_CODE: real catalog props (brend, chastota, material…),
+		// not template leftovers in COMPARE_PROPERTY_CODE (ARTNUMBER, PROP07…).
+		"PROPERTY_CODE" => !empty($arParams["DETAIL_PROPERTY_CODE"])
+			? $arParams["DETAIL_PROPERTY_CODE"]
+			: $arParams["COMPARE_PROPERTY_CODE"],
 		"OFFERS_FIELD_CODE" => $arParams["COMPARE_OFFERS_FIELD_CODE"],
-		"OFFERS_PROPERTY_CODE" => $arParams["COMPARE_OFFERS_PROPERTY_CODE"],
+		"OFFERS_PROPERTY_CODE" => !empty($arParams["DETAIL_OFFERS_PROPERTY_CODE"])
+			? $arParams["DETAIL_OFFERS_PROPERTY_CODE"]
+			: $arParams["COMPARE_OFFERS_PROPERTY_CODE"],
 		"ELEMENT_SORT_FIELD" => $arParams["COMPARE_ELEMENT_SORT_FIELD"],
 		"ELEMENT_SORT_ORDER" => $arParams["COMPARE_ELEMENT_SORT_ORDER"],
 		"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["element"],
