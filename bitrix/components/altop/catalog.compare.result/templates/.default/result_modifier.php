@@ -198,6 +198,14 @@ foreach($arResult["ITEMS"] as &$item) {
 }
 unset($item, $compareTextFields, $compareTextLimit);
 
+// Hide duplicate article prop: CML2_ARTICLE ("Артикул") vs ARTICLS ("Артикулы")
+unset(
+	$arResult["SHOW_PROPERTIES"]["ARTICLS"],
+	$arResult["DELETED_PROPERTIES"]["ARTICLS"],
+	$arResult["SHOW_OFFER_PROPERTIES"]["ARTICLS"],
+	$arResult["DELETED_OFFER_PROPERTIES"]["ARTICLS"]
+);
+
 //SECTIONS: group by top-level catalog section (not leaf subsections)
 $arResult["COMPARE_SECTIONS"] = array();
 $arResult["COMPARE_SECTION_ID"] = 0;
