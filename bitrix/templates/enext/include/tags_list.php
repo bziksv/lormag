@@ -1,10 +1,15 @@
-<?
-if(!$arParams["SECTION"]["UF_META_TAGS"])
+<?php
+if (empty($arParams["SECTION"]["UF_META_TAGS"])) {
     return;
-?>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+}
 
+use Bitrix\Main\Page\Asset;
+
+$asset = Asset::getInstance();
+$asset->addString('<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>', true);
+$asset->addString(<<<'HTML'
 <style>
+
     .tags-list{
         margin-bottom: 30px;
     }
@@ -166,7 +171,11 @@ if(!$arParams["SECTION"]["UF_META_TAGS"])
     .slick-next.slick-disabled:before {
         opacity: 0.25;
     }
+
 </style>
+HTML
+, true);
+?>
 
 <?
 $ids = $arParams["SECTION"]["UF_META_TAGS"];

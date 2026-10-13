@@ -2,11 +2,14 @@
 class CNigesCookiesAcceptPublic
 {
 	/**
-	 * Inject cookie notice at the end of page generation.
+	 * Inject cookie notice before </body> so HTML stays valid.
+	 * Registered on main::OnEndBufferContent.
 	 */
-	public static function OnEpilog()
+	public static function OnEndBufferContent(&$content)
 	{
-		global $APPLICATION;
+		if (!is_string($content) || $content === '') {
+			return;
+		}
 
 		if (!CModule::IncludeModule(cookiesaccept_MODULE_ID)) {
 			return;
@@ -25,7 +28,17 @@ class CNigesCookiesAcceptPublic
 		if (isset($_REQUEST['bxajaxid']) && (string)$_REQUEST['bxajaxid'] !== '') {
 			return;
 		}
+		if (defined('ADMIN_SECTION') && ADMIN_SECTION === true) {
+			return;
+		}
 
+		// Already injected (composite / double buffer)
+		if (strpos($content, 'id="nca-cookiesaccept-line"') !== false) {
+			return;
+		}
+
+		global $APPLICATION;
+		ob_start();
 		$APPLICATION->IncludeComponent(
 			'niges:cookiesaccept',
 			'.default',
@@ -33,5 +46,21 @@ class CNigesCookiesAcceptPublic
 			false,
 			array('HIDE_ICONS' => 'Y')
 		);
+		$html = ob_get_clean();
+		if ($html === '') {
+			return;
+		}
+
+		if (stripos($content, '</body>') !== false) {
+			$content = preg_replace('/<\/body>/i', $html . "\n</body>", $content, 1);
+		} else {
+			$content .= $html;
+		}
+	}
+
+	/** @deprecated kept for old event registrations until DB is updated */
+	public static function OnEpilog()
+	{
+		// no-op: banner is injected via OnEndBufferContent
 	}
 }

@@ -19,19 +19,19 @@ $APPLICATION->SetTitle("О магазине");?><p>
 </ul>
 <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
 	<div style="width: 350px;">
- <img alt="Отоскоп PICCOLIGHT F.O. LED 3.5 V" src="/upload/iblock/e03/ihekrzmnpnw7lp8zfejel437ot28t8ao.jpg" data-lazyload-src="/upload/iblock/e03/ihekrzmnpnw7lp8zfejel437ot28t8ao.jpg">
+ <img alt="Отоскоп PICCOLIGHT F.O. LED 3.5 V" src="/upload/iblock/e03/ihekrzmnpnw7lp8zfejel437ot28t8ao.jpg">
 		<p style="text-align: center;">
 			 Отоскоп PICCOLIGHT F.O. LED
 		</p>
 	</div>
 	<div style="width: 350px;">
- <img alt="Система регистрации ОАЭ «Аудио-СМАРТ»" src="/upload/iblock/254/6yeshj1nn8alpgi6kq9yoe30t6vjt4r1.jpg" data-lazyload-src="/upload/iblock/254/6yeshj1nn8alpgi6kq9yoe30t6vjt4r1.jpg">
+ <img alt="Система регистрации ОАЭ «Аудио-СМАРТ»" src="/upload/iblock/254/6yeshj1nn8alpgi6kq9yoe30t6vjt4r1.jpg">
 		<p style="text-align: center;">
 			 Система регистрации ОАЭ «Аудио-СМАРТ»
 		</p>
 	</div>
 	<div style="width: 350px;">
- <img alt="Воронка Зигле" src="/upload/iblock/652/l95p5vc7j1z2vpbfoch0go32ma73mg28.jpg" data-lazyload-src="/upload/iblock/652/l95p5vc7j1z2vpbfoch0go32ma73mg28.jpg">
+ <img alt="Воронка Зигле" src="/upload/iblock/652/l95p5vc7j1z2vpbfoch0go32ma73mg28.jpg">
 		<p style="text-align: center;">
 			 Воронка Зигле
 		</p>
@@ -46,7 +46,7 @@ $APPLICATION->SetTitle("О магазине");?><p>
 	 Наш каталог на сайте включает широкий ассортимент медицинской техники. Новые товары регулярно поступают на наши склады. Каждый продукт имеет регистрационное удостоверение и проходит более 160 проверок качества. В случае выявления нарушений продукция возвращается поставщику.
 </p>
 <p style="text-align: center;">
- <img alt="kachestvo.png" src="/upload/medialibrary/be5/6hxc7xbu3dwq06wcwh30kgvm5u5oghdl.png" data-lazyload-src="/upload/medialibrary/be5/6hxc7xbu3dwq06wcwh30kgvm5u5oghdl.png" style="text-align: center; width: 60%;"><br>
+ <img alt="kachestvo.png" src="/upload/medialibrary/be5/6hxc7xbu3dwq06wcwh30kgvm5u5oghdl.png" style="text-align: center; width: 60%;"><br>
 </p>
 <p>
 	 Мы постоянно совершенствуем наш сервис. Все сотрудники регулярно проходят специальное обучение для повышения квалификации.
@@ -59,19 +59,19 @@ $APPLICATION->SetTitle("О магазине");?><p>
  <br>
 <div style="display: flex; justify-content: space-around; flex-wrap: wrap; align-items: center; margin-bottom: 15px;">
 	<div style="width: 285px; margin-bottom: 10px; text-align: center;">
- <img src="/upload/medialibrary/4c3/9v9j1a9h6x8pbgya3fhby3nfzk11rw4l.png" data-lazyload-src="/upload/medialibrary/4c3/9v9j1a9h6x8pbgya3fhby3nfzk11rw4l.png" alt="Акции" style="width: 150px">
+ <img src="/upload/medialibrary/4c3/9v9j1a9h6x8pbgya3fhby3nfzk11rw4l.png" alt="Акции" style="width: 150px">
 		<p>
  <a href="/promotions/">Акции и скидки</a>
 		</p>
 	</div>
 	<div style="width: 285px; margin-bottom: 10px; text-align: center;">
- <img src="/upload/medialibrary/d48/wa7qfkjfvib87kzoswv38x5i5y1cl7a8.png" data-lazyload-src="/upload/medialibrary/d48/wa7qfkjfvib87kzoswv38x5i5y1cl7a8.png" alt="Оплата" style="width:150px">
+ <img src="/upload/medialibrary/d48/wa7qfkjfvib87kzoswv38x5i5y1cl7a8.png" alt="Оплата" style="width:150px">
 		<p>
  <a href="/payment-delivery/">Оплата</a>
 		</p>
 	</div>
 	<div style="width: 285px; margin-bottom: 10px; text-align: center;">
- <img src="/upload/medialibrary/063/voo7f9r1hwkutnbou049d8si5rf1pkzw.png" data-lazyload-src="/upload/medialibrary/063/voo7f9r1hwkutnbou049d8si5rf1pkzw.png" alt="Доставка" style="width: 150px">
+ <img src="/upload/medialibrary/063/voo7f9r1hwkutnbou049d8si5rf1pkzw.png" alt="Доставка" style="width: 150px">
 		<p>
  <a href="/payment-delivery/">Доставка</a>
 		</p>

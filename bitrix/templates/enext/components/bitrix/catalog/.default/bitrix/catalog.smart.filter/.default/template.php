@@ -414,7 +414,7 @@ $arResult["JS_FILTER_PARAMS"]["HIDE_DISABLED_PROPS"] = $arSettings["SMART_FILTER
 			<?}?>
 			<div class="bx-filter-button-box">
 				<div class="bx-filter-block">
-					<button class="btn btn-buy" type="submit" id="set_filter" name="set_filter"><span><?=GetMessage("CT_BCSF_SET_FILTER")?></span><span class="bx-filter-count" <?if(!isset($arResult["ELEMENT_COUNT"])) echo 'style="display:none"';?> style="display: inline-block;"><?=intval($arResult["ELEMENT_COUNT"])?></span></button>
+					<button class="btn btn-buy" type="submit" id="set_filter" name="set_filter"><span><?=GetMessage("CT_BCSF_SET_FILTER")?></span><span class="bx-filter-count" style="<?=!isset($arResult["ELEMENT_COUNT"]) ? "display:none;" : "display:inline-block;"?>"><?=intval($arResult["ELEMENT_COUNT"])?></span></button>
 					<button class="btn btn-default" type="submit" id="del_filter" name="del_filter"><i class="icon-trash"></i><span><?=GetMessage("CT_BCSF_DEL_FILTER")?></span></button>
 				</div>
 			</div>

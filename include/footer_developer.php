@@ -3,11 +3,8 @@
  ПРОДВИЖЕНИЕ САЙТОВ</a>
 -->
 
-
-<div style="text-align: center;display: flex;
-    align-items: center; ">
-
-    <a href="https://prime-ltd.su/?from=lormag.ru">
-        <img src ="/bitrix/images/arturgolubev.lazyload/pixel.gif" data-lazyload-src="https://prime-ltd.su/logo/white.svg" style="width: 75% !important; height: auto !important; margin-left: 45px;" title="Продвижение сайтов" alt="Продвижение сайтов">
-    </a>
+<div style="text-align:center;display:flex;align-items:center;justify-content:center;">
+	<a href="https://prime-ltd.su/?from=lormag.ru">
+		<img src="https://prime-ltd.su/logo/white.svg" style="width:75%;height:auto;margin-left:45px;" title="Продвижение сайтов" alt="Продвижение сайтов">
+	</a>
 </div>

@@ -29,13 +29,13 @@ class niges_cookiesaccept extends CModule
 		if (!IsModuleInstalled($this->MODULE_ID)) {
 			RegisterModule($this->MODULE_ID);
 		}
-		RegisterModuleDependences('main', 'OnEpilog', $this->MODULE_ID, 'CNigesCookiesAcceptPublic', 'OnEpilog');
+		RegisterModuleDependences('main', 'OnEndBufferContent', $this->MODULE_ID, 'CNigesCookiesAcceptPublic', 'OnEndBufferContent');
 		return true;
 	}
 
 	function UnInstallDB($arParams = array())
 	{
-		UnRegisterModuleDependences('main', 'OnEpilog', $this->MODULE_ID, 'CNigesCookiesAcceptPublic', 'OnEpilog');
+		UnRegisterModuleDependences('main', 'OnEndBufferContent', $this->MODULE_ID, 'CNigesCookiesAcceptPublic', 'OnEndBufferContent');
 		UnRegisterModule($this->MODULE_ID);
 		return true;
 	}
