@@ -132,7 +132,10 @@ RewriteRule ^(.*)$ /bitrix/virtual_file_system.php [L]
 
 Redirect 301 /catalog/endoskopy-dlya-otorinolaringologii/ /catalog/lor-endoskopy/
 Redirect 301 /catalog/otoskopy-welch-allyn-ssha-r/ /catalog/otoskopy-welch-allyn-ssha/
-Redirect 301 /catalog/rukoyatki-welch-allyn-r/ /catalog/rukoyatki-welch-allyn/
+Redirect 301 /catalog/rukoyatki-welch-allyn-r/ /catalog/rukoyatki-welch-allyn-ssha/
+Redirect 301 /catalog/rukoyatki-welch-allyn/ /catalog/rukoyatki-welch-allyn-ssha/
+Redirect 301 /catalog/voronki-ushnye-k-otoskopam-welch-allyn-ssha/ /catalog/voronki-ushnye-k-otoskopam-welch-allyn/
+Redirect 301 /catalog/nazofaringoskopy/ /catalog/laringofaringoskopy/
 Redirect 301 /catalog/osvetiteli-welch-allyn-ssha-r/ /catalog/osvetiteli-welch-allyn-ssha/
 Redirect 301 /catalog/lor-nabory-odnorazovye-r/ /catalog/lor-nabory-odnorazovye/
 Redirect 301 /catalog/voronki-ushnye-k-otoskopam-kawe-germaniya-r/ /catalog/voronki-ushnye-k-otoskopam-kawe-germaniya/

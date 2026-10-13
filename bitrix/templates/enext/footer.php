@@ -124,7 +124,7 @@ IncludeTemplateLangFile(__FILE__);
 								);?>
 							</div>-->
 							<div class="col-xs-12 col-md-2">
-								<div class="footer__developer" width="150px">
+								<div class="footer__developer">
 									<?//DEVELOPER//?>
 									<?$APPLICATION->IncludeComponent("bitrix:main.include", "", array("AREA_FILE_SHOW" => "file", "PATH" => SITE_DIR."include/footer_developer.php"), false);?>
 								</div>

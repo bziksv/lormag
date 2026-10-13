@@ -699,8 +699,23 @@ class CEnext{
 					$content = preg_replace("/<body([^>]*)>/", "<body$1 data-img-webp=\"true\">", $content, 1);
 				
 				$content = preg_replace_callback("/<img[^>]+src=\"([^\"]+)\"/is", function($matches) {
-					if($GLOBALS["IMG_LAZYLOAD"])
-						$matches[0] = str_replace(" src=", " data-lazyload-src=", $matches[0]);
+					if($GLOBALS["IMG_LAZYLOAD"]) {
+						$src = $matches[1];
+						// Keep real src for captcha/data URIs/already-lazied pixel placeholders
+						$skipLazy = (
+							strpos($src, "captcha.php") !== false
+							|| strpos($src, "data:image/") === 0
+							|| strpos($src, "arturgolubev.lazyload/pixel.gif") !== false
+						);
+						if(!$skipLazy) {
+							$matches[0] = preg_replace(
+								'/\ssrc="/',
+								' src="/bitrix/images/arturgolubev.lazyload/pixel.gif" data-lazyload-src="',
+								$matches[0],
+								1
+							);
+						}
+					}
 
 					if($GLOBALS["IMG_WEBP"]) {
 						if(substr($matches[1], 0, 4) != "http" && substr($matches[1], 0, 2) != "//" && substr($matches[1], 0, 11) != "data:image/") {

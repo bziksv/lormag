@@ -97,10 +97,8 @@
 						
 						if(!!this.useCaptcha && !!result.captcha) {
 							if(!!captchaImg) {
-								if(captchaImg.hasAttribute('data-lazyload-src'))
-									BX.adjust(captchaImg, {attrs: {'data-lazyload-src': '/bitrix/tools/captcha.php?captcha_sid=' + result.captcha}});
-								else
-									BX.adjust(captchaImg, {props: {src: '/bitrix/tools/captcha.php?captcha_sid=' + result.captcha}});
+								var captchaSrc = '/bitrix/tools/captcha.php?captcha_sid=' + result.captcha;
+								BX.adjust(captchaImg, {attrs: {src: captchaSrc, 'data-lazyload-src': captchaSrc}});
 								captchaImg.parentNode.style.display = '';
 							}
 							if(!!captchaWord)
