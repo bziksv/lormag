@@ -975,7 +975,7 @@
 						
 						var workingHours = BX(this.visual.ID + (!!this.obSkuItems && this.offersView == 'OBJECTS' ? '_' + this.skuItem.ID : '') + '_contacts').querySelector('[data-entity="working-hours"]');
 						if(!!workingHours)
-							BX.style(workingHours, 'display', '');
+							BX.style(workingHours, 'display', 'block');
 						
 						e.stopPropagation();
 					}
@@ -988,7 +988,7 @@
 						
 						var workingHoursToday = BX(this.visual.ID + (!!this.obSkuItems && this.offersView == 'OBJECTS' ? '_' + this.skuItem.ID : '') + '_contacts').querySelector('[data-entity="working-hours-today"]');
 						if(!!workingHoursToday)
-							BX.style(workingHoursToday, 'display', '');
+							BX.style(workingHoursToday, 'display', 'block');
 						
 						e.stopPropagation();
 					}
@@ -3116,13 +3116,13 @@
 				if(this.canBuy) {
 					if(price && price.PRICE > 0) {
 						if(!partnersUrl) {
-							this.obDelay && BX.style(this.obDelay, 'display', '');
+							this.obDelay && BX.style(this.obDelay, 'display', 'block');
 							this.obBuyBtn && BX.adjust(this.obBuyBtn, {props: {disabled: false}, style: {display: ''}});
 							this.obAddToBasketBtn && BX.adjust(this.obAddToBasketBtn, {props: {disabled: false}, style: {display: ''}});
 							this.obPartnersBtn && BX.style(this.obPartnersBtn, 'display', 'none');
 							this.obPartnersMess && BX.style(this.obPartnersMess, 'display', 'none');
 							if(this.obQuickOrder) {
-								BX.style(this.obQuickOrder, 'display', '');								
+								BX.style(this.obQuickOrder, 'display', 'block');								
 								var quickOrderProductId = this.obQuickOrder.querySelector('[name="PRODUCT_ID"]');
 								if(!!quickOrderProductId)
 									quickOrderProductId.value = newOffer.ID;
@@ -3132,10 +3132,10 @@
 							this.obBuyBtn && BX.style(this.obBuyBtn, 'display', 'none');
 							this.obAddToBasketBtn && BX.style(this.obAddToBasketBtn, 'display', 'none');
 							this.obPartnersBtn && BX.adjust(this.obPartnersBtn, {props: {disabled: false}, style: {display: ''}});
-							this.obPartnersMess && BX.style(this.obPartnersMess, 'display', '');
+							this.obPartnersMess && BX.style(this.obPartnersMess, 'display', 'block');
 							this.obQuickOrder && BX.style(this.obQuickOrder, 'display', 'none');
 						}
-						this.node.quantity && BX.style(this.node.quantity, 'display', '');
+						this.node.quantity && BX.style(this.node.quantity, 'display', 'block');
 						this.obAskPrice && BX.style(this.obAskPrice, 'display', 'none');
 					} else {
 						if(!partnersUrl) {
@@ -3150,7 +3150,7 @@
 						this.obDelay && BX.style(this.obDelay, 'display', 'none');
 						this.node.quantity && BX.style(this.node.quantity, 'display', 'none');
 						this.obPartnersMess && BX.style(this.obPartnersMess, 'display', 'none');
-						this.obAskPrice && BX.style(this.obAskPrice, 'display', '');
+						this.obAskPrice && BX.style(this.obAskPrice, 'display', 'block');
 						this.obQuickOrder && BX.style(this.obQuickOrder, 'display', 'none');
 					}
 					this.obNotAvail && BX.style(this.obNotAvail, 'display', 'none');
@@ -3169,11 +3169,11 @@
 					this.node.quantity && BX.style(this.node.quantity, 'display', 'none');
 					this.obPartnersMess && BX.style(this.obPartnersMess, 'display', 'none');
 					this.obAskPrice && BX.style(this.obAskPrice, 'display', 'none');
-					this.obNotAvail && BX.style(this.obNotAvail, 'display', '');
+					this.obNotAvail && BX.style(this.obNotAvail, 'display', 'block');
 					this.obQuickOrder && BX.style(this.obQuickOrder, 'display', 'none');
 					if(this.obSubscribe) {
 						if(newOffer.CATALOG_SUBSCRIBE === 'Y') {
-							BX.style(this.obSubscribe, 'display', '');
+							BX.style(this.obSubscribe, 'display', 'block');
 							this.obSubscribe.setAttribute('data-item', newOffer.ID);
 							BX(this.visual.SUBSCRIBE_LINK + '_hidden').click();
 						} else {
@@ -3297,13 +3297,13 @@
 							if(this.obPriceMeasure)
 								BX.adjust(this.obPriceMeasure, {html: '/' + BX.message('CATALOG_ELEMENT_SQ_M_MESSAGE')});
 							
-							BX.style(this.obPcQuantity.parentNode, 'display', '');
-							BX.style(this.obSqMQuantity.parentNode, 'display', '');
+							BX.style(this.obPcQuantity.parentNode, 'display', 'block');
+							BX.style(this.obSqMQuantity.parentNode, 'display', 'block');
 							BX.style(this.obQuantity.parentNode, 'display', 'none');
 						} else {
 							BX.style(this.obPcQuantity.parentNode, 'display', 'none');
 							BX.style(this.obSqMQuantity.parentNode, 'display', 'none');
-							BX.style(this.obQuantity.parentNode, 'display', '');
+							BX.style(this.obQuantity.parentNode, 'display', 'block');
 						}
 					}
 				}
@@ -3686,7 +3686,7 @@
 
 				if(this.obArticle.all && this.obArticle.value) {
 					if(this.offers[index].ARTICLE) {
-						BX.style(this.obArticle.all, 'display', '');
+						BX.style(this.obArticle.all, 'display', 'block');
 						BX.adjust(this.obArticle.value, {html: this.offers[index].ARTICLE});
 					} else {
 						BX.style(this.obArticle.all, 'display', 'none');

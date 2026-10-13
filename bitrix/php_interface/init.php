@@ -1,4 +1,17 @@
 <?
+
+AddEventHandler('main', 'OnEndBufferContent', 'lormag_sanitize_empty_display');
+function lormag_sanitize_empty_display(&$content)
+{
+	if (!is_string($content) || $content === '' || stripos($content, 'display:') === false) {
+		return;
+	}
+	// Yandex: CSS "display": Parse Error — empty value left by BX.style(..., '')
+	$content = preg_replace('/\bstyle\s*=\s*"display\s*:\s*;\s*"/i', '', $content);
+	$content = preg_replace('/\bstyle\s*=\s*\'display\s*:\s*;\s*\'/i', '', $content);
+	$content = preg_replace('/(?<=[;"\'])\s*display\s*:\s*;\s*/i', '', $content);
+}
+
 AddEventHandler("iblock", "OnAfterIBlockElementAdd", Array("OnAfterIBlockElementAddClass", "OnAfterIBlockElementAddHandler"));
 class OnAfterIBlockElementAddClass
 {
