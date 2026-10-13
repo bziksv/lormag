@@ -66,6 +66,8 @@ Disallow: /brands/
 Disallow: /promotions/
 Disallow: /oferta-lormag.pdf
 Disallow: /compliance.pdf
+Disallow: /services/
+Disallow: /places/
 Allow: /bitrix/components/
 Allow: /bitrix/cache/
 Allow: /bitrix/js/
