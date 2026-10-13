@@ -11,7 +11,10 @@ if (method_exists($this, 'setFrameMode')) {
 	$this->setFrameMode(true);
 }
 
-$this->addExternalCss($this->GetFolder().'/style.css');
+$cssPath = $this->GetFolder().'/style.css';
+$this->addExternalCss($cssPath);
+// OnEndBufferContent injects after </head> — link must ship with the markup
+$cssHref = htmlspecialcharsbx($cssPath);
 
 $cookieName = htmlspecialcharsbx($arResult['COOKIE_NAME']);
 $textVer = (int)$arResult['TEXTVER'];
@@ -52,6 +55,7 @@ $styleVars = sprintf(
 	$topOffset
 );
 ?>
+<link rel="stylesheet" href="<?=$cssHref?>">
 <div
 	id="nca-cookiesaccept-line"
 	class="<?=htmlspecialcharsbx(implode(' ', $classes))?>"
