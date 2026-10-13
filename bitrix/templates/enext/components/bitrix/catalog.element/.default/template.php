@@ -232,7 +232,7 @@ $arParams["MESS_RELATIVE_QUANTITY_FEW"] = $arParams["MESS_RELATIVE_QUANTITY_FEW"
 											</div>
 										<?}
 										if(!$arParams["DISABLE_DELAY"] && (!$object || ($object && $objectContacts)) && (!$haveOffers || ($haveOffers && ($arParams["OFFERS_VIEW"] == "PROPS" || $arParams["OFFERS_VIEW"] == "DROPDOWN_LIST")))) {?>
-											<div class="product-item-detail-delay" id="<?=$itemIds['DELAY_LINK']?>" title="<?=$arParams['MESS_BTN_DELAY']?>" style="display: <?=(!$partnersUrl && $actualItem['CAN_BUY'] && $price['PRICE'] > 0 ? '' : 'none')?>;"><i class="icon-heart"></i></div>
+											<div class="product-item-detail-delay" id="<?=$itemIds['DELAY_LINK']?>" title="<?=$arParams['MESS_BTN_DELAY']?>" style="display: <?=(!$partnersUrl && $actualItem['CAN_BUY'] && $price['PRICE'] > 0 ? 'block' : 'none')?>;"><i class="icon-heart"></i></div>
 										<?}?>
 									</div>
 								<?}
@@ -273,7 +273,7 @@ $arParams["MESS_RELATIVE_QUANTITY_FEW"] = $arParams["MESS_RELATIVE_QUANTITY_FEW"
 										foreach($arResult["OFFERS"] as $keyOffer => $offer) {
 											if(!isset($offer["MORE_PHOTO_COUNT"]) || $offer["MORE_PHOTO_COUNT"] <= 0)
 												continue;
-											$strVisible = $arResult["OFFERS_SELECTED"] == $keyOffer ? "" : "none";?>
+											$strVisible = $arResult["OFFERS_SELECTED"] == $keyOffer ? "block" : "none";?>
 											<div class="hidden-xs hidden-sm product-item-detail-slider-controls-block" id="<?=$itemIds['SLIDER_CONT_OF_ID'].$offer['ID']?>" style="display: <?=$strVisible?>;">
 												<?$activeKeyPhoto = 0;
 												foreach($offer["MORE_PHOTO"] as $keyPhoto => $photo) {
@@ -1473,10 +1473,10 @@ $arParams["MESS_RELATIVE_QUANTITY_FEW"] = $arParams["MESS_RELATIVE_QUANTITY_FEW"
 							//PARTNERS_LINK//?>
 							<div id="<?=$itemIds['PARTNERS_ID']?>">
 								<?if($actualItem["CAN_BUY"] && $price["PRICE"] > 0 ):?>
-								<button type="button" class="btn btn-buy" id="<?=$itemIds['PARTNERS_LINK']?>" style="display: <?=($partnersUrl ? '' : 'none')?>;"<?=($actualItem["CAN_BUY"] && $price["PRICE"] > 0 ? "" : " disabled='disabled'")?>><i class="icon-cart"></i><span><?=$arParams["MESS_BTN_BUY"]?></span></button>
+								<button type="button" class="btn btn-buy" id="<?=$itemIds['PARTNERS_LINK']?>" style="display: <?=($partnersUrl ? 'block' : 'none')?>;"<?=($actualItem["CAN_BUY"] && $price["PRICE"] > 0 ? "" : " disabled='disabled'")?>><i class="icon-cart"></i><span><?=$arParams["MESS_BTN_BUY"]?></span></button>
 								<?endif;?>
 								<?if(!empty($arSettings["PARTNERS_INFO_MESSAGE"])) {?>
-									<div class="product-item-detail-info-message" style="display: <?=($partnersUrl ? '' : 'none')?>;" data-entity="partners-message"><?=$arSettings["PARTNERS_INFO_MESSAGE"]?></div>
+									<div class="product-item-detail-info-message" style="display: <?=($partnersUrl ? 'block' : 'none')?>;" data-entity="partners-message"><?=$arSettings["PARTNERS_INFO_MESSAGE"]?></div>
 								<?}?>
 							</div>
 							<?//LIST_URL//
@@ -1496,7 +1496,7 @@ $arParams["MESS_RELATIVE_QUANTITY_FEW"] = $arParams["MESS_RELATIVE_QUANTITY_FEW"
 							<?}
 							//UNDER_ORDER//
 							if($arParams["UNDER_ORDER"]) {?>
-								<button type="button" class="btn btn-default" id="<?=$itemIds['NOT_AVAILABLE_MESS']?>" style="display: <?=(!$actualItem['CAN_BUY'] ? '' : 'none')?>;"><i class="icon-clock"></i><span><?=Loc::getMessage("CT_BCE_CATALOG_UNDER_ORDER")?></span></button>
+								<button type="button" class="btn btn-default" id="<?=$itemIds['NOT_AVAILABLE_MESS']?>" style="display: <?=(!$actualItem['CAN_BUY'] ? 'block' : 'none')?>;"><i class="icon-clock"></i><span><?=Loc::getMessage("CT_BCE_CATALOG_UNDER_ORDER")?></span></button>
 							<?}
 							//SUBSCRIBE//
 							if($showSubscribe) {?>
