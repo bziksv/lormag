@@ -66,6 +66,7 @@ $containerName = "slide-panel-form-".$obName;?>
 		<?}
 
 		if($arParams["USE_CAPTCHA"]) {
+			$captchaFrame = $this->createFrame("forms_captcha", false)->begin();
 			$captchaSid = $APPLICATION->CaptchaGetCode();?>
 			<div class="form-group captcha">
 				<div class="pic">
@@ -74,7 +75,9 @@ $containerName = "slide-panel-form-".$obName;?>
 				<input type="text" maxlength="5" name="CAPTCHA_WORD" class="form-control" placeholder="<?=Loc::getMessage('FORMS_SLIDE_PANEL_CAPTCHA_WORD')?>" />
 				<input type="hidden" name="CAPTCHA_SID" value="<?=htmlspecialcharsbx($captchaSid)?>" />
 			</div>
-		<?}?>
+		<?
+			$captchaFrame->end();
+		}?>
 		<div class="form-group">
 			<button type="submit" class="btn btn-buy"><span><?=Loc::getMessage("FORMS_SLIDE_PANEL_SUBMIT")?></span></button>
 		</div>

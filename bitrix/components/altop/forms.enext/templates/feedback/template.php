@@ -47,6 +47,7 @@ $containerName = "feedback-".$obName;?>
 				</div>
 				<div class="col-xs-12 col-md-3">
 					<?if($arParams["USE_CAPTCHA"]) {
+						$captchaFrame = $this->createFrame("feedback_captcha", false)->begin();
 						$captchaSid = $APPLICATION->CaptchaGetCode();?>
 						<div class="form-group captcha">
 							<div class="pic">
@@ -55,7 +56,9 @@ $containerName = "feedback-".$obName;?>
 							<input type="text" maxlength="5" name="CAPTCHA_WORD" class="form-control" placeholder="<?=Loc::getMessage('FORMS_FEEDBACK_CAPTCHA_WORD')?>" />
 							<input type="hidden" name="CAPTCHA_SID" value="<?=htmlspecialcharsbx($captchaSid)?>" />
 						</div>
-					<?}?>
+					<?
+						$captchaFrame->end();
+					}?>
 					<div class="form-group<?=(!$arParams['USE_CAPTCHA'] ? ' no-captcha' : '');?>">
 						<button type="submit" class="btn btn-primary"><?=Loc::getMessage("FORMS_FEEDBACK_SUBMIT")?></button>
 					</div>
