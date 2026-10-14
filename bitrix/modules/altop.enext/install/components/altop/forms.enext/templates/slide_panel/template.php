@@ -12,7 +12,7 @@ $containerName = "slide-panel-form-".$obName;?>
 	<?if(!empty($arResult["IBLOCK"]["DESCRIPTION"])) {?>
 		<div class="slide-panel__form-caption"><?=$arResult["IBLOCK"]["DESCRIPTION"]?></div>
 	<?}?>
-	<form action="javascript:void(0)">		
+	<form action="javascript:void(0)" novalidate>
 		<input type="hidden" name="IBLOCK_STRING" value="<?=$arResult['IBLOCK']['STRING']?>" />
 		<?foreach($arResult["IBLOCK"]["PROPERTIES"] as $arProp) {
 			if($arProp["CODE"] == "OBJECT_ID" || $arProp["CODE"] == "PRODUCT_ID" || $arProp["CODE"] == "OFFER_ID") {?>
@@ -34,6 +34,7 @@ $containerName = "slide-panel-form-".$obName;?>
 			<?}
 		}
 		unset($arProp);
+		
 		if($arParams["USER_CONSENT"]) {?>
 			<input type="hidden" name="USER_CONSENT_ID" value="<?=$arParams['USER_CONSENT_ID']?>" />
 			<input type="hidden" name="USER_CONSENT_URL" value="" />
@@ -63,18 +64,19 @@ $containerName = "slide-panel-form-".$obName;?>
 				</div>
 			</div>
 		<?}
+
 		if($arParams["USE_CAPTCHA"]) {?>
 			<div class="form-group captcha">
-				<div class="pic 22" style="display:none;">								
-					<img src ="/bitrix/images/arturgolubev.lazyload/pixel.gif" data-lazyload-src="" width="100" height="36" alt="CAPTCHA" />
-				</div>							
+				<div class="pic" style="display:none;">
+					<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="100" height="36" alt="CAPTCHA" />
+				</div>
 				<input type="text" maxlength="5" name="CAPTCHA_WORD" class="form-control" placeholder="<?=Loc::getMessage('FORMS_SLIDE_PANEL_CAPTCHA_WORD')?>" />
 				<input type="hidden" name="CAPTCHA_SID" value="" />
 			</div>
-		<?}?>		
+		<?}?>
 		<div class="form-group">
 			<button type="submit" class="btn btn-buy"><span><?=Loc::getMessage("FORMS_SLIDE_PANEL_SUBMIT")?></span></button>
-		</div>		
+		</div>
 	</form>
 	<div class="alert" style="display: none;"></div>
 </div>
@@ -95,6 +97,7 @@ unset($arProp);?>
 		FORMS_NOT_EMPTY_INVALID: '<?=GetMessageJS("FORMS_SLIDE_PANEL_NOT_EMPTY_INVALID");?>',
 		FORMS_PHONE_WRONG: '<?=GetMessageJS("FORMS_SLIDE_PANEL_PHONE_WRONG");?>',
 		FORMS_PHONE_INVALID: '<?=GetMessageJS("FORMS_SLIDE_PANEL_PHONE_INVALID")?>',
+		FORMS_EMAIL_INVALID: '<?=GetMessageJS("FORMS_SLIDE_PANEL_EMAIL_INVALID")?>',
 		FORMS_USER_CONSENT_NOT_EMPTY_INVALID: '<?=GetMessageJS("FORMS_SLIDE_PANEL_USER_CONSENT_NOT_EMPTY_INVALID");?>',
 		FORMS_CAPTCHA_WRONG: '<?=GetMessageJS("FORMS_SLIDE_PANEL_CAPTCHA_WRONG");?>',			
 		FORMS_ALERT_SUCCESS: '<?=GetMessageJS("FORMS_SLIDE_PANEL_ALERT_SUCCESS");?>',
@@ -111,4 +114,4 @@ unset($arProp);?>
 	});
 </script>
 
-<?unset($jsProps);
+<?unset($jsProps);?>

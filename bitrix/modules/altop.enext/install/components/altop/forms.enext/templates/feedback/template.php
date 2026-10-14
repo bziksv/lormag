@@ -20,7 +20,7 @@ $containerName = "feedback-".$obName;?>
 						if($arProp["USER_TYPE"] != "HTML") {
 							if($arProp["CODE"] != "SOURCE_URL") {?>
 								<div class="form-group<?=(!empty($arProp['HINT']) ? ' has-feedback' : '');?>">
-									<input type="text" name="<?=$arProp['CODE']?>" class="form-control" placeholder="<?=$arProp['NAME']?>" inputmode="<?=($arProp['CODE'] == 'PHONE' ? 'numeric' : 'text')?>" />
+									<input type="<?=($arProp['CODE'] == 'EMAIL' ? 'email' : 'text')?>" name="<?=$arProp['CODE']?>" class="form-control" placeholder="<?=$arProp['NAME']?>" inputmode="<?=($arProp['CODE'] == 'PHONE' ? 'numeric' : 'text')?>" />
 									<?if(!empty($arProp["HINT"])) {?>
 										<i class="form-control-feedback fv-icon-no-has fa <?=$arProp['HINT']?>"></i>
 									<?}?>
@@ -48,9 +48,9 @@ $containerName = "feedback-".$obName;?>
 				<div class="col-xs-12 col-md-3">
 					<?if($arParams["USE_CAPTCHA"]) {?>
 						<div class="form-group captcha">
-							<div class="pic 23" style="display:none;">								
-								<img src ="/bitrix/images/arturgolubev.lazyload/pixel.gif" data-lazyload-src="" width="100" height="36" alt="CAPTCHA" />
-							</div>							
+							<div class="pic" style="display:none;">
+								<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="100" height="36" alt="CAPTCHA" />
+							</div>
 							<input type="text" maxlength="5" name="CAPTCHA_WORD" class="form-control" placeholder="<?=Loc::getMessage('FORMS_FEEDBACK_CAPTCHA_WORD')?>" />
 							<input type="hidden" name="CAPTCHA_SID" value="" />
 						</div>
@@ -62,7 +62,7 @@ $containerName = "feedback-".$obName;?>
 				<?if($arParams["USER_CONSENT"]) {?>
 					<input type="hidden" name="USER_CONSENT_ID" value="<?=$arParams['USER_CONSENT_ID']?>" />
 					<input type="hidden" name="USER_CONSENT_URL" value="" />
-					<div class="col-xs-12">
+					<div class="col-xs-12" style="clear: both;">
 						<div class="form-group form-group-checkbox">
 							<div class="checkbox">
 								<?$fields = array();
