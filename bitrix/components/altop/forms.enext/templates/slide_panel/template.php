@@ -65,19 +65,15 @@ $containerName = "slide-panel-form-".$obName;?>
 			</div>
 		<?}
 
-		if($arParams["USE_CAPTCHA"]) {
-			$captchaFrame = $this->createFrame("forms_captcha", false)->begin();
-			$captchaSid = $APPLICATION->CaptchaGetCode();?>
+		if($arParams["USE_CAPTCHA"]) {?>
 			<div class="form-group captcha">
-				<div class="pic">
-					<img src="/bitrix/tools/captcha.php?captcha_sid=<?=htmlspecialcharsbx($captchaSid)?>" width="100" height="36" alt="CAPTCHA" />
+				<div class="pic" style="display:none;">
+					<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="100" height="36" alt="CAPTCHA" />
 				</div>
 				<input type="text" maxlength="5" name="CAPTCHA_WORD" class="form-control" placeholder="<?=Loc::getMessage('FORMS_SLIDE_PANEL_CAPTCHA_WORD')?>" />
-				<input type="hidden" name="CAPTCHA_SID" value="<?=htmlspecialcharsbx($captchaSid)?>" />
+				<input type="hidden" name="CAPTCHA_SID" value="" />
 			</div>
-		<?
-			$captchaFrame->end();
-		}?>
+		<?}?>
 		<div class="form-group">
 			<button type="submit" class="btn btn-buy"><span><?=Loc::getMessage("FORMS_SLIDE_PANEL_SUBMIT")?></span></button>
 		</div>

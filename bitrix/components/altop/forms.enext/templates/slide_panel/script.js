@@ -94,10 +94,9 @@
                         if(!!this.useCaptcha && !!result.captcha) {
                             if(!!captchaImg) {
                                 var captchaSrc = '/bitrix/tools/captcha.php?captcha_sid=' + result.captcha;
-                                if(captchaImg.hasAttribute('data-lazyload-src'))
-                                    BX.adjust(captchaImg, {attrs: {'data-lazyload-src': captchaSrc, src: captchaSrc}});
-                                else
-                                    BX.adjust(captchaImg, {props: {src: captchaSrc}});
+                                captchaImg.removeAttribute('data-lazyload-src');
+                                captchaImg.removeAttribute('data-src');
+                                BX.adjust(captchaImg, {attrs: {src: captchaSrc}});
                                 if(captchaImg.parentNode)
                                     captchaImg.parentNode.style.display = '';
                             }

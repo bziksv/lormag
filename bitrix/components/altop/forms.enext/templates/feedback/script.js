@@ -98,8 +98,11 @@
 						if(!!this.useCaptcha && !!result.captcha) {
 							if(!!captchaImg) {
 								var captchaSrc = '/bitrix/tools/captcha.php?captcha_sid=' + result.captcha;
-								BX.adjust(captchaImg, {attrs: {src: captchaSrc, 'data-lazyload-src': captchaSrc}});
-								captchaImg.parentNode.style.display = '';
+								captchaImg.removeAttribute('data-lazyload-src');
+								captchaImg.removeAttribute('data-src');
+								BX.adjust(captchaImg, {attrs: {src: captchaSrc}});
+								if(captchaImg.parentNode)
+									captchaImg.parentNode.style.display = '';
 							}
 							if(!!captchaWord)
 								captchaWord.value = '';
