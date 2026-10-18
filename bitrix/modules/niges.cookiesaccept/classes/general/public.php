@@ -32,6 +32,18 @@ class CNigesCookiesAcceptPublic
 			return;
 		}
 
+		// Slide panels and other BX.ajax calls. ob_start() inside this
+		// buffer handler fatals and drops the JSON, so the panel stays on the loader.
+		$requestedWith = isset($_SERVER['HTTP_X_REQUESTED_WITH']) ? strtolower((string)$_SERVER['HTTP_X_REQUESTED_WITH']) : '';
+		if ($requestedWith === 'xmlhttprequest' || !empty($_SERVER['HTTP_BX_AJAX'])) {
+			return;
+		}
+
+		// Banner belongs only in a full document. Fragment responses have no </body>.
+		if (stripos($content, '</body>') === false) {
+			return;
+		}
+
 		// Already injected (composite / double buffer)
 		if (strpos($content, 'id="nca-cookiesaccept-line"') !== false) {
 			return;
